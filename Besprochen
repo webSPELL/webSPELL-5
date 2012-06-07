@@ -1,0 +1,61 @@
+URL:
+	Erweitern für Modrewrite
+	Dynamische URLS / alias
+	
+Backup:
+	Testen
+	
+Browser:
+	fliegt raus
+	dafür vllt Analystics modul fürs einfache einbinden von google
+	
+Captcha:
+	ok, sollte austauschbar sein
+	
+Classconflict:
+	ok
+	
+Filesystem:
+	ok
+	
+Hooks:
+	?
+	
+HttpsRequest:
+	ok
+
+Image:
+	ok
+Language:
+	ok
+	
+Mail:
+	smtp testen
+		
+Datenbank:
+	mysqli vs pdo?
+	
+Backend:
+	Log löschen
+	
+Repositoryparser:
+	Umbau auf simplexml
+	
+Security:
+	Escapen weg wegen PHP > 5.3
+	vllt komplett weg
+
+Upload:
+	neu machen
+	
+Validate:
+	anpassen
+	
+Session
+	Frontend / Backend getrennt
+	
+Usergruppen / rechte
+	
+Unittests
+PHPDoc
+Anderen Hashes statt md5
