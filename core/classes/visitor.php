@@ -29,13 +29,5 @@ class Visitor {
 		}
 		return self::$ip;
 	}
-	
-	static function getBrowser(){
-		if(self::$browser == null){
-			self::$browser = new Browser();
-			self::$browser->Check(null,true);
-		}
-		return self::$browser;
-	}
 }
 ?>

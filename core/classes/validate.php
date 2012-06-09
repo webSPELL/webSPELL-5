@@ -20,7 +20,7 @@ class Validate{
 	 * @param string $email
 	 * @return boolean 
 	 */
-	static function Email($email){
+	static function email($email){
 		if(self::checkUTF8()){
 			$regex = "/^(?!\.)(\.?[\p{L}0-9!#\$%&'\*\+\/=\?^_`\{\|}~-]+)+@";	#local-part
 			$regex .= "(?!\.)(\.?(?!-)[0-9\p{L}-]+(?<!-))+\.[\p{L}0-9]{2,}";	#hostname
@@ -38,7 +38,7 @@ class Validate{
 	 * @param string $url
 	 * @return boolean
 	 */
-	static function Url($url){
+	static function url($url){
 		$regex = "/^(ht|f)tps?:\/\/"; 						#protocol
 		$regex .= "([^:@]+:[^:@]+@)?";							#auth
 		$regex .= "(?!\.)(\.?(?!-)[0-9\p{L}-]+(?<!-))+";	#hostname
@@ -49,7 +49,11 @@ class Validate{
 		return preg_match($regex, $url);
 	}
 	
-	static function Ip($ip){
+	/**
+	 * Validate an IP
+	 * @param String $ip
+	 */
+	static function ip($ip){
 		// IPv6
 		if(strpos($ip,".") === false && strpos($ip, ":")){
 			/**
