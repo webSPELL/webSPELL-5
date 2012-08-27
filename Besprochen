@@ -33,7 +33,7 @@ Mail:
 	smtp testen
 		
 Datenbank:
-	mysqli vs pdo?
+	PDO
 	
 Backend:
 	Log löschen
@@ -53,9 +53,30 @@ Validate:
 	
 Session
 	Frontend / Backend getrennt
+	Userrechte in der Session speichern
 	
 Usergruppen / rechte
+	Module
+	Gruppen
+	Mitglieder
 	
 Unittests
+
 PHPDoc
-Anderen Hashes statt md5
+
+Hashes
+	SHA512
+	
+PHP Version
+	5.3
+	
+JQuery
+	mitliefern in einer stable Version
+	oder durch ein CDN ausliefern
+	
+Cache
+	nur eine CSS Datei
+	nur eine JS Datei
+
+Fonts:
+	Font Awesome
