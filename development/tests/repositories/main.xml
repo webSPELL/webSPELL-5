@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<repository>
+	<meta>
+		<name>webspell.org</name>
+		<description>Main Repository for Core Addons</description>
+		<website>http://www.webspell.org</website>
+	</meta>
+	<modules>
+		<modul>
+			<name>Forum</name>
+			<author>blue.tiger</author>
+			<description>Simple Forum with Boards</description>
+			<url>http://www.webspell.org/addons/forum</url>
+			<screenthosts>
+				<image src="http://9kl.be/blue.gif" />
+			</screenthosts>
+			<versions>
+				<version>
+					<name>1.09</name>
+					<path>http://members.webspell.org/addons/forum/1.09.rar</path>
+					<dependencies>
+						<dependecy>
+							<repository>name of repository</repository>
+							<modulname></modulname>
+							<version type="greater|less|equal">1.09</version>
+						</dependecy>
+					</dependencies>
+					<conflicts>
+						<conflict>
+							<repository>name of repository</repository>
+							<modulname></modulname>
+							<version type="greater|less|equal">1.09</version>
+						</conflict>
+					</conflicts>
+				</version>
+			</versions>
+		</modul>
+	</modules>
+</repository>
