@@ -11,9 +11,9 @@
 			<author>blue.tiger</author>
 			<description>Simple Forum with Boards</description>
 			<url>http://www.webspell.org/addons/forum</url>
-			<screenthosts>
+			<screenshots>
 				<image src="http://9kl.be/blue.gif" />
-			</screenthosts>
+			</screenshots>
 			<versions>
 				<version>
 					<name>1.09</name>
