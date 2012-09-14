@@ -1,7 +1,4 @@
 <?php
-
-namespace WebSPELL\Core\Classes;
-
 class Session{
 	
 	/**

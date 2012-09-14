@@ -12,9 +12,6 @@ abstract class Module {
 			default:
 				return false;
 		}
-	}
-	
-	
-	
+	}	
 }
 ?>
