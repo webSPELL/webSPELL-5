@@ -10,7 +10,7 @@ class Registry extends Singleton {
 	 */
 	public function get($key) {
 		if(empty($key) || !isset($this->array[$key]) || (!is_string($key) && !is_int($key) )) {
-			return false;
+			throw new WebspellException('invalid or not existing key '.$key);
 		}
 		return $this->array[$key];
 	}
@@ -23,7 +23,7 @@ class Registry extends Singleton {
 	 */
 	public function set($key, $value) {
 		if(empty($key) || (!is_string($key) && !is_int($key) )) {
-			return false;
+			throw new WebspellException('invalid key '.$key);
 		}
 		$this->array[$key] = $value;
 	}
