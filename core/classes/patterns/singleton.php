@@ -1,7 +1,9 @@
 <?php
+/**
+ * Singleton design pattern for extension
+ */
 class Singleton {
 
-	public $foo = '';
 	static private $instance = null;
 
 	static public function getInstance() {
