@@ -1,5 +1,5 @@
 <?php
-class Registry extends Singleton {
+class Registry extends Pattern_Singleton {
 	
 	private $array = array();
 	
