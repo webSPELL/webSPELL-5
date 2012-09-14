@@ -1,5 +1,5 @@
 <?php
-abstract class Modul {
+abstract class Module {
 	private $box = false;
 	private $content = false;
 	
