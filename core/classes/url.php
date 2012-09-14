@@ -2,10 +2,12 @@
 /**
  * URL class for URL parsing and link generation
  */
-class Url {
+class Url extends Pattern_Singleton {
 
-	private $modRewrite = true;
+	private $registry;
+	private $modRewrite = false;
 	private $defaultModule = "news";
+	private $defaultSection = "default";
 
 	private $module;
 	private $moduleParamId = 0;
@@ -13,9 +15,10 @@ class Url {
 	private $moduleParams = Array();
 
 	public function __construct(){
-		
-		$this->parseQueryString();
-
+	
+		$this->registry = Registry::getInstance();
+		$this->modRewrite = $this->registry->get('modRewrite');
+	
 	}
 
     /**
@@ -50,25 +53,13 @@ class Url {
 					    	$params.
 					    	".html";
 		}
-/*    
-        if($this->registry->get('url_withindex')) {
-            $querystring = 'index.php?';
-        }
-        else {
-            $querystring = '?';
-        }
-        $querystring .= '/'.$urldata['module'];
-        $module = true;
-        foreach($urldata AS $key => $value) {
-            if($module) {
-                $module = false;
-                continue;
-            }
-            else {
-                $querystring .= '/'.$key.'/'.$value;
-            }
-        }
-*/
+
+		if($this->modRewrite == false) {
+			$urlString = "/?".$urlString;
+		} else {
+			$urlString = "/".$urlString;
+		}
+
         return $urlString;
     }
 
@@ -109,7 +100,7 @@ class Url {
 				}
 				else {
 					$this->moduleParams = explode(',', $urlData[0]);
-					array_shift($this->moduleParams);
+					$this->moduleParamSection = array_shift($this->moduleParams);
 				}
 
 			}
@@ -152,7 +143,7 @@ class Url {
 	 */
 	public function getSection() {
 		if(empty($this->moduleParamSection)) {
-			return null;
+			return $this->defaultSection;
 		} else {
 			return $this->moduleParamSection;
 		}
@@ -209,61 +200,4 @@ class Url {
 
 }
 
-$input = Array(
-			Array('module'=>'user'),
-			Array('module'=>'user', 'params'=> Array('desc', '5')),
-			Array('module'=>'user', 'id'=>'1234', 'title'=>'bluetiger', 'params'=> Array('desc', 'contact')),
-			Array('module'=>'user', 'section'=>'edit', 'id'=>'200', 'title'=>'editieren'),
-			Array('module'=>'forum', 'section'=>'board', 'id'=>'31', 'title'=>'allgemeiner support'),
-			Array('module'=>'forum', 'section'=>'topic', 'id'=>'1233', 'title'=>'ich brauche hilfe!'),
-			Array('module'=>'forum', 'section'=>'topic', 'id'=>'1234', 'title'=>'Dies ist der Topictitel! -#äö+ü', 'params'=> Array('desc', '5'))
-		);
-
-$output = Array();
-$input_original = Array();
-
-foreach($input as $value) {
-
-	array_push($input_original, Array('module'=>$value['module'], 'section'=>(isset($value['section']) ? $value['section'] : ""), (isset($value['id']) ? $value['id'] : ""), (isset($value['params']) ? $value['params'] : Array())));
-	$c = new Url();
-	$url = $c->generateUrl($value);
-	echo $url."\n";
-	$c->parseQueryString($url);
-	print_r($c);
-	array_push($output, Array('module'=>$c->getModule(), 'section'=>$c->getSection(), 'id'=>$c->getId(), 'params'=>$c->getModuleParams()));
-
-}
-
-print_r($input_original);
-print_r($output);
-
-
-
-/*
-$test = Array(
-"user.html",
-"user,save.html",
-"user/200-bluetiger,31,asc.html",
-"user/edit/200-editieremich.html",
-"user,31,asc.html"
-"forum/board/31-name.html",
-"forum/topic/2183-ich_bin_ein_topic.htm"
-		);
-
-// http://www.webspell.org/user.html
-// http://www.webspell.org/user,save.html
-// http://www.webspell.org/user/200-bluetiger,31,asc.html
-// http://www.webspell.org/user/bluetiger,31,asc.html
-// http://www.webspell.org/forum/board/31-name.html
-// http://www.webspell.org/forum/topic/2183-ich_bin_ein_topic.htm
-
-foreach($test as $k=>$v) {
-
-	$_SERVER['QUERY_STRING'] = $v;
-	echo $_SERVER['QUERY_STRING']."\n";
-	$c = new url();
-	print_r($c);
-
-}
-*/
 ?>
