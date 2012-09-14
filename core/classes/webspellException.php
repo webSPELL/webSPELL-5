@@ -13,7 +13,7 @@ class WebspellException extends Exception {
 	public function __construct($messageId, $code = 0) {
 		$this->registry = Registry::getInstance();
 		if(is_numeric($messageId)) {
-			$message = $this->registry->getValue('language')->getTranslation($messageId);
+			$message = $this->registry->get('language')->getTranslation($messageId);
 		} else {
 			$message = $messageId;
 		}
@@ -23,8 +23,8 @@ class WebspellException extends Exception {
 	
 	public function __toString() {
 		
-		$debugLevel = $this->registry->getValue('debugLevel');
-		$pathToLogFile = $this->registry->getValue('pathToLogFile');
+		$debugLevel = $this->registry->get('debugLevel');
+		$pathToLogFile = $this->registry->get('pathToLogFile');
 
 		$logString = "WebspellException:\n".
 		"Message: ".$this->getMessage()."\n".
