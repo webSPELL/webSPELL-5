@@ -1,0 +1,23 @@
+flag: logging, erweiterte ausgabe
+
+Klassen
+
+	klassenname: erster buchstabe groß, jedes neue wort groß
+	methodenname: klein, jedes neue wort groß
+
+einrückungen
+	zeilenbeginn: tabs
+	leerzeichen bei "function() {"
+	leerzeichen bei parametern: substr($queryString, 0, strpos($queryString, "."));
+
+geschweifte klammern
+	if: immer klammern setzen
+	in selbe zeile wie if/while/class/...
+
+kommentare
+	phpdoc für jede methode/class
+	sonstige code-kommentare als singleline-kommentare
+
+rückgabewerte (getter)
+	leeres array => leeres array
+	leerer string, (id)0, ... => null
