@@ -30,7 +30,7 @@ try {
 	new Main();
 }
 catch(WebspellException $e){
-	echo $e;
+	echo "Exception";
 }
 echo microtime(true)-$GLOBALS['starttime'];
 ?>
