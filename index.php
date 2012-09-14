@@ -1,6 +1,7 @@
 <?php 
 
 error_reporting(E_ALL);
+$GLOBALS['starttime'] = microtime(true);
 define("WEBSPELL_ROOT",__DIR__.DIRECTORY_SEPARATOR);
 
 spl_autoload_register(function ($class) {
@@ -31,5 +32,5 @@ try {
 catch(WebspellException $e){
 	echo $e;
 }
-echo "Done";
+echo microtime(true)-$GLOBALS['starttime'];
 ?>
