@@ -154,7 +154,11 @@ class Url extends Pattern_Singleton {
 	 * @return string
 	 */
 	public function getModule() {
-		return $this->module;
+	    if(empty($this->module)) {
+	        return $this->defaultModule;
+	    } else {
+		    return $this->module;
+	    }
 	}
 
     /**

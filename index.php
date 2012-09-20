@@ -6,8 +6,8 @@ define("WEBSPELL_ROOT",__DIR__.DIRECTORY_SEPARATOR);
 
 spl_autoload_register(function ($class) {
 	$class = strtolower($class);
-	if(stristr($class, 'Module_')){
-		$modul = str_replace("Module_", "", $class);
+	if(stristr($class, 'module_')){
+		$modul = str_replace("module_", "", $class);
 		$path = 'modules/'.$modul.'/index.php';
 	}
 	else{
