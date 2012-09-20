@@ -1,4 +1,9 @@
 <?php
+include('../../../../core/classes/pattern/singleton.php');
+include('../../../../core/classes/registry.php');
+Registry::getInstance()->set('modRewrite',true);
+include('../../../../core/classes/webspellexception.php');
+include('../../../../core/classes/url.php');
 function arrayRecursiveDiff($aArray1, $aArray2) { 
     $aReturn = array(); 
    
