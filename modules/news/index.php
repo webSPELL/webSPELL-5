@@ -4,6 +4,7 @@ class Module_News extends Module{
 	private $http = true;
 	
 	public function section_default($params = array()){
+	    Render::addStylesheet('css/myfile.css');
 		return "Sie befinden sich auf der Startseite des CMS";
 	}
 	

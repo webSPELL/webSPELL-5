@@ -3,6 +3,7 @@ class Render {
     static $scripts = array();
     static $styles = array();
     static $outputs = array();
+    static $toRender = array();
     
     private $theme_dir = 'themes';
     private $registry;
@@ -15,13 +16,22 @@ class Render {
         self::$scripts[] = array($path, $defer);
     }
     
+    static function addToRender($key,$callback,$params = array()){
+        self::$toRender[$key] = array($callback, $params);
+    }
+    
     static function addOutput($key, $output, $append=false){
         if(array_key_exists($key, self::$outputs)){
             if($append == false){
                 throw new WebspellException('Output key exists');
             }
             else{
-                self::$outputs[$key] .= $output;
+                if(is_array(self::$outputs[$key])){
+                    self::$outputs[$key] = array_merge(self::$outputs[$key],$output);
+                }
+                else{
+                    self::$outputs[$key] .= $output;
+                }
             }
         }
         else{
@@ -41,25 +51,54 @@ class Render {
     }
     
     public function display(){
+        self::$outputs['core'] = array();
+        
+        foreach(self::$toRender as $key => $array){
+        	self::addOutput($key, call_user_func($array[0],$array[1]));
+        }
+        
+        self::$outputs['core']['pagetitle'] = "SEO Page Title"; //@Todo 
+        self::$outputs['core']['scripts'] = '';
+        array_unique(self::$scripts);
+        foreach(self::$scripts as $script){
+            self::$outputs['core']['scripts'] .= '<script src="'.$script[0].'" type="text/javascript"></script>';
+        }
+        
+        self::$outputs['core']['styles'] = '';
+        array_unique(self::$styles);
+        foreach(self::$styles as $style){
+        	self::$outputs['core']['styles'] .= '<link rel="stylesheet" type="text/css" href="'.$style.'" />';
+        }
+        
         $theme = self::$outputs;
         include($this->themepath.DIRECTORY_SEPARATOR.'theme.php');
     }
     
-    public function execute(){
+    public function loadElements(){
         $url = $this->registry->get('url');
-        $contentmodul = $url->getModule();
-        $modulpath = WEBSPELL_ROOT.DIRECTORY_SEPARATOR.'modules'.DIRECTORY_SEPARATOR.$contentmodul;
-        if(is_dir($modulpath)){
-            $modulname = "Module_".ucfirst($contentmodul);
-            $modul =  new $modulname();
+        $contentmodule = $url->getModule();
+        $modulepath = WEBSPELL_ROOT.DIRECTORY_SEPARATOR.'modules'.DIRECTORY_SEPARATOR.$contentmodule;
+        if(is_dir($modulepath)){
+            $modulename = "Module_".ucfirst($contentmodule);
+            $module =  new $modulename();
             $section = 'section_'.$url->getSection();
-            self::addOutput('content', $modul->$section());
-            
+            $this->addToRender('content', array($module,$section));           
         }  
         else{
-            echo $modulpath;
-            throw new WebspellException('Unknown_modul');
+            throw new WebspellException('Unknown_module');
         }    
+        
+        $options = parse_ini_file($this->themepath.DIRECTORY_SEPARATOR.'options.ini',true);
+        if(isset($options['boxes'])){
+            foreach($options['boxes'] as $key => $function){
+                if(strpos($function,"Module_")!==false){
+                    $parts = explode("_",$function,3);
+                    $modulename = "Module_".$parts[1];
+                    $function = $parts[2];
+                    $this->addToRender($key, array(new $modulename(),$function));
+                }
+            }
+        }
     }
     
 }

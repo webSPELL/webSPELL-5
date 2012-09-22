@@ -13,7 +13,7 @@ class Main {
 		$registry->get('url')->parseQueryString();
 		$render = new Render();
 		
-		$render->execute();
+		$render->loadElements();
 		
 		
 		
