@@ -30,6 +30,11 @@ class userMapper extends \Spot\Entity
                  'type'        => 'HasMany',
                  'entity'      => 'notificationMapper',
                  'where'       => array('toUser' => ':entity.userId')
+            ),
+            'memberships' => array(
+                 'type'        => 'HasMany',
+                 'entity'      => 'userMembershipsMapper',
+                 'where'       => array('userId' => ':entity.userId')
             )
         );
     }
