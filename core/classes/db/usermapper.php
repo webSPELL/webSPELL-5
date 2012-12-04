@@ -22,9 +22,9 @@ class userMapper extends \Spot\Entity
                  'where'       => array('userId' => ':entity.userId')
              ),
             'logs' => array(
-                             'type'        => 'HasMany',
-                             'entity'      => 'logMapper',
-                             'where'       => array('userId' => ':entity.userId')
+                 'type'        => 'HasMany',
+                 'entity'      => 'logMapper',
+                 'where'       => array('userId' => ':entity.userId')
             )
         );
     }
