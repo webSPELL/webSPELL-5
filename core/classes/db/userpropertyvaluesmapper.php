@@ -10,7 +10,7 @@ class userPropertyValuesMapper extends \Spot\Entity {
             'userId'                 => array('type' => 'int', 'index' => true, 'required' => true),
             'propertyId'             => array('type' => 'int', 'index' => true, 'required' => true),
             'value'                  => array('type' => 'string'),
-            'privacy'                => array('type' => 'int', 'default' => 0)
+            'privacy'                => array('type' => 'int', 'default' => 0) //0 = guests, 1 = registered, 2 = myself
        );
    }
    public static function relations() {
