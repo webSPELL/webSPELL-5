@@ -25,6 +25,11 @@ class userMapper extends \Spot\Entity
                  'type'        => 'HasMany',
                  'entity'      => 'logMapper',
                  'where'       => array('userId' => ':entity.userId')
+            ),
+            'notifications' => array(
+                 'type'        => 'HasMany',
+                 'entity'      => 'notificationMapper',
+                 'where'       => array('toUser' => ':entity.userId')
             )
         );
     }
