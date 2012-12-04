@@ -2,14 +2,20 @@
 class Module_News extends Module{
 	private $box = false;
 	private $http = true;
-	
+	public function __construct(){
+        $this->templateEngine = Registry::getInstance()->get('template_modul');
+    }
 	public function section_default($params = array()){
 	    Render::addStylesheet('css/myfile.css');
-		return "Sie befinden sich auf der Startseite des CMS";
+        $url = URl::getInstance();
+        $parameters = array('module'=>'News','section'=>'details');
+        $href = $url->generateURL($parameters);
+        $values = array('link'=>$href);
+        return $this->templateEngine->returnTemplate('News','default','block',$values);
 	}
 	
 	public function section_details($params = array()){
-		return "Hier könnte man Details finden";
+		 return $this->templateEngine->returnTemplate('News','default','details');
 	}
 	
 }

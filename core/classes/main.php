@@ -11,6 +11,8 @@ class Main {
 		$registry->set('session',new Session());
 		$registry->set('url', new Url());
 		$registry->get('url')->parseQueryString();
+        $registry->set('template_modul',new Template('mod'));
+        
 		$render = new Render();
 		
 		$render->loadElements();
