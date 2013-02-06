@@ -1,7 +1,7 @@
 <?php
-class userPropertyValuesMapper extends \Spot\Entity {
+class userPropertiesValuesMapper extends \Spot\Entity {
      
-    protected $_datasource = "userPropertyValues";
+    protected static $_datasource = "userPropertiesValues";
 
     public static function fields()
     {

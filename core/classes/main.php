@@ -12,6 +12,9 @@ class Main {
 		$registry->set('url', new Url());
 		$registry->get('url')->parseQueryString();
         $registry->set('template_modul',new Template('mod'));
+        $registry->set('db', new Database());
+        
+        
         
 		$render = new Render();
 		
