@@ -8,14 +8,14 @@ class Module_News extends Module{
 	public function section_default($params = array()){
 	    Render::addStylesheet('css/myfile.css');
         $url = URl::getInstance();
-        $parameters = array('module'=>'News','section'=>'details');
+        $parameters = array('module'=>'news','section'=>'details');
         $href = $url->generateURL($parameters);
         $values = array('link'=>$href);
-        return $this->templateEngine->returnTemplate('News','default','block',$values);
+        return $this->templateEngine->returnTemplate('news','default','block',$values);
 	}
 	
 	public function section_details($params = array()){
-		 return $this->templateEngine->returnTemplate('News','default','details');
+		 return $this->templateEngine->returnTemplate('news','default','details');
 	}
 	
 }
