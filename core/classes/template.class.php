@@ -53,6 +53,7 @@ class Template {
                 $this->loaded_templates[$namespace.'_'.$template]['blocks'] = array();
                 $content = file_get_contents($path);
                 $splits = preg_split($this->regex_split, $content,NULL,PREG_SPLIT_DELIM_CAPTURE | PREG_SPLIT_NO_EMPTY | PREG_SPLIT_NO_EMPTY);
+                $names = array();
                 foreach($splits as $block){
                     $block = trim($block);
                     if(empty($block)){
@@ -60,11 +61,20 @@ class Template {
                     }
                     if($this->isBlockStart($block)){
                         $blockname = $this->getBlockName($block);
+                        array_push($names, $blockname);
+                        $this->loaded_templates[$namespace.'_'.$template]['blocks'][$blockname] = array("content"=>"","blocks"=>array());
                     }
                     elseif($this->isBlockEnd($block)){
+                        array_pop($names);
                     }
                     else{
-                        $this->loaded_templates[$namespace.'_'.$template]['blocks'][$blockname] = $block;
+                        $blockname = $names[count($names)-1];
+                        $this->loaded_templates[$namespace.'_'.$template]['blocks'][$blockname]["content"] .= $block;
+                        if(count($names) != 1){
+                            $lastblock = $names[count($names)-2];
+                            $this->loaded_templates[$namespace.'_'.$template]['blocks'][$lastblock]["blocks"][] = $blockname;
+                            $this->loaded_templates[$namespace.'_'.$template]['blocks'][$lastblock]["content"] .= "{block;".$blockname."}";
+                        }
                     }
                 }
             }
@@ -83,34 +93,78 @@ class Template {
             throw new Exception("Unknown Block name", 4);
         }
 
-        $content = $this->loaded_templates[$namespace.'_'.$template]['blocks'][$block];
+        if(!is_array($values)){
+            throw new Exception("values needs to be an array",5);
+        }
+
+        $content = $this->loaded_templates[$namespace.'_'.$template]['blocks'][$block]["content"];
+        $blocks = $this->loaded_templates[$namespace.'_'.$template]['blocks'][$block]["blocks"];
         preg_match_all($this->regex_element, $content, $results,PREG_SET_ORDER);
-        $key_function = function($object){
-            return $object[0];
-        };
-        $value_function = function($object) use($values){
-            if(isset($values[$object[1]])){
-                return $values[$object[1]];
+        if(ArrayHelper::is_assoc($values) == false){
+            $content_filled = '';
+            foreach ($values as $key => $value_array) {
+                $key_function = function($object){
+                    return $object[0];
+                };
+                $value_function = function($object) use($value_array){
+                    if(isset($value_array[$object[1]])){
+                        return $value_array[$object[1]];
+                    }
+                    else{
+                        return '';
+                    }
+                };
+                $org_values = $value_array;
+                $keys = array_map($key_function, $results);
+                $values = array_map($value_function,$results);
+                $pre_parsed = str_replace($keys, $values, $content);
+                $content_filled .=$this->fillSubTemplates($template, $namespace, $block, $org_values, $pre_parsed);
             }
-            else{
-                return '';
-            }
-        };
-        $keys = array_map($key_function, $results);
-        $values = array_map($value_function,$results);
-        $content_filled = str_replace($keys, $values, $content);
+        }
+        else{
+            $key_function = function($object){
+                return $object[0];
+            };
+            $value_function = function($object) use($values){
+                if(isset($values[$object[1]])){
+                    return $values[$object[1]];
+                }
+                else{
+                    return '';
+                }
+            };
+            $org_values = $values;
+            $keys = array_map($key_function, $results);
+            $values = array_map($value_function,$results);
+            $pre_parsed = str_replace($keys, $values, $content);
+            $content_filled = $this->fillSubTemplates($template, $namespace, $block, $org_values, $pre_parsed);
+        }
         return $content_filled;
     }
 
     public function translateTemplate($template, $namespace, $block, $values = array()){
         $content = $this->fillTemplate($template, $namespace, $block, $values);
-
-
     }
 
     private function getBlockName($tag){
-       preg_match($this->regex_block, $tag,$erg);
-       return $erg[1];
+        preg_match($this->regex_block, $tag,$erg);
+        return $erg[1];
+    }
+
+    private function fillSubTemplates($template,$namespace, $block, $values, $current){
+        $subblocks = $this->loaded_templates[$namespace.'_'.$template]['blocks'][$block]["blocks"];
+        if(count($subblocks)){
+            foreach($subblocks as $block_extra){
+                if(isset($values[$block_extra])){
+                    $block_content = $this->fillTemplate($template,$namespace,$block_extra, $values[$block_extra]);
+                }
+                else{
+                    $block_content = "";
+                }
+                $current = str_replace("{block;".$block_extra."}", $block_content,$current);
+            }
+        }
+        return $current;
     }
 
     private function isBlockStart($tag){
