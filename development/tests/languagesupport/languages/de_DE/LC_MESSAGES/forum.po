@@ -1,0 +1,284 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: Florian Siegmund <mail@florian-siegmund.de>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=iso-8859-1\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "add to buddylist"
+msgstr "zur Freundesliste hinzufügen"
+
+msgid "Administrator"
+msgstr "Administrator"
+
+msgid "Admin-Actions"
+msgstr "Admin Aktionen"
+
+msgid "and"
+msgstr "und"
+
+msgid "Author"
+msgstr "Autor"
+
+msgid "back to buddy-list"
+msgstr "wieder zur Freundesliste"
+
+msgid "Board"
+msgstr "Forum"
+
+msgid "Boards"
+msgstr "Foren"
+
+msgid "Clanmember"
+msgstr "Clanmitglied"
+
+msgid "close topic"
+msgstr "Thema schliessen"
+
+msgid "closed"
+msgstr "geschlossenes"
+
+msgid "(no title)"
+msgstr "(kein Titel)"
+
+msgid "delete selected posts"
+msgstr "ausgewählte Beiträge löschen"
+
+msgid "delete topic"
+msgstr "Thema löschen"
+
+msgid "edit"
+msgstr "ändern"
+
+msgid "edit reply"
+msgstr "Antwort ändern"
+
+msgid "edit topic"
+msgstr "Thema ändern"
+
+msgid "You forgot to enter a message!"
+msgstr "Du hast keine Nachricht eingegeben!"
+
+msgid "GO"
+msgstr "Los!"
+
+msgid "1 guest"
+msgstr "1 Gast"
+
+msgid "guests"
+msgstr "Gäste"
+
+msgid "Happy Birthday!"
+msgstr "Alles Gute zum Geburtstag!"
+
+msgid "homepage"
+msgstr "Webseite"
+
+msgid "HTML is OFF"
+msgstr "HTML ist AUS"
+
+msgid "ignore user"
+msgstr "Benutzer ignorieren"
+
+msgid "Last Post"
+msgstr "Letzter Beitrag"
+
+msgid "Latest Post"
+msgstr "Letzter Beitrag"
+
+msgid "Leave shadowtopic?"
+msgstr "Link im alten Forum lassen?"
+
+msgid "Make this topic sticky"
+msgstr "dieses Thema als wichtig markieren"
+
+msgid "make topic sticky"
+msgstr "Thema als wichtig markieren"
+
+msgid "make topic unsticky"
+msgstr "Wichtig-Markierung entfernen"
+
+msgid "mark all boards read"
+msgstr "alle Foren als gelesen anzeigen"
+
+msgid "mark all topics read"
+msgstr "alle Themen als gelesen anzeigen"
+
+msgid "Maximum online"
+msgstr "Rekord online"
+
+msgid "Message"
+msgstr "Mitteilung"
+
+msgid "Messageboard"
+msgstr "Forum"
+
+msgid "messenger"
+msgstr "Nachrichtensystem"
+
+msgid "moderated by"
+msgstr "moderiert von"
+
+msgid "Moderator"
+msgstr "Moderator"
+
+msgid "move topic"
+msgstr "Thema verschieben"
+
+msgid "move this topic to board"
+msgstr "Thema in folgendes Forum verschieben"
+
+msgid "moved"
+msgstr "verschoben"
+
+msgid "n/a"
+msgstr "-"
+
+msgid "new posts"
+msgstr "neue Beiträge"
+
+msgid "new reply"
+msgstr "neue Antwort"
+
+msgid "new topic"
+msgstr "neues Thema"
+
+msgid "newest member"
+msgstr "neuster Benutzer"
+
+msgid "next 7 days"
+msgstr "in den nächsten 7 Tagen"
+
+msgid "No access"
+msgstr "Kein Zugriff"
+
+msgid "No accses to write in this board."
+msgstr "Du darfst in diesem Forum nicht schreiben."
+
+msgid "no icon"
+msgstr "kein Symbol"
+
+msgid "no new posts"
+msgstr "keine neuen Beiträge"
+
+msgid "You have no permission to view intern boards!"
+msgstr "Du hast kein Zugriff auf dieses Forum!"
+
+msgid "Not logged in."
+msgstr "Nicht angemeldet."
+
+msgid "New reply by %poster% in topi"
+msgstr "Neue Antwort von %poster% im Them"
+
+msgid "Notify me when a reply is posted"
+msgstr "mich über neue Antwort benachrichtigen"
+
+msgid "Now online"
+msgstr "Jetzt online"
+
+msgid "Options"
+msgstr "Optionen"
+
+msgid "Permission denied!"
+msgstr "Erlaubnis verweigert!"
+
+msgid "popular"
+msgstr "populär"
+
+msgid "post new reply"
+msgstr "neue Antwort schreiben"
+
+msgid "post new topic"
+msgstr "Thema erstellen"
+
+msgid "Posts"
+msgstr "Beiträge"
+
+msgid "posts in"
+msgstr "Beiträge in"
+
+msgid "Preview"
+msgstr "Vorschau betrachten"
+
+msgid "preview my post"
+msgstr "meinen Beitrag erst als Vorschau betrachten"
+
+msgid "quote"
+msgstr "zitieren"
+
+msgid "read only"
+msgstr "nur lesen"
+
+msgid "registered"
+msgstr "registriert"
+
+msgid "1 registered user"
+msgstr "1 registrierter Benutzer"
+
+msgid "registered users"
+msgstr "registrierte Benutzer"
+
+msgid "reopen topic"
+msgstr "Thema wieder eröffnen"
+
+msgid "Replies"
+msgstr "Antworten"
+
+msgid "select all"
+msgstr "Alle auswählen"
+
+msgid "Sort"
+msgstr "Sortierung"
+
+msgid "Stats"
+msgstr "Statistik"
+
+msgid "sticky"
+msgstr "wichtiges"
+
+msgid "subject"
+msgstr "Titel"
+
+msgid "today"
+msgstr "Heute"
+
+msgid "Topic"
+msgstr "Thema"
+
+msgid "The topic has been closed!"
+msgstr "Dieses Thema wurde geschlossen!"
+
+msgid "topic-icon"
+msgstr "Themensymbol"
+
+msgid "Topic could not be found."
+msgstr "Thema wurde nicht gefunden."
+
+msgid "Topics"
+msgstr "Themen"
+
+msgid "Views"
+msgstr "Aufrufe"
+
+msgid "who was online"
+msgstr "Wer war online"
+
+msgid "Who's online?"
+msgstr "Wer ist online?"
+
+msgid "wrote"
+msgstr "schrieb"
+
+msgid "yesterday"
+msgstr "Gestern"
+
+msgid "You have to enter a topic title!"
+msgstr "Du musst einen Titel für das Thema eingeben!"
+
+msgid "You have to enter some text!"
+msgstr "Kein Text vorhanden!"
+
