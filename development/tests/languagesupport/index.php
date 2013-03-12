@@ -1,7 +1,8 @@
 <?php
-$rounds = 10000;
+$outputs = 10000;
+$modules = 100;
 
-echo "<h1>Vergleich gettext/array, $rounds Durchläufe</h1>";
+echo "<h1>Vergleich gettext/array, $outputs Durchläufe</h1>";
 
 /* gettext */
 
@@ -11,20 +12,22 @@ $min = 1.0;
 
 ob_start();
 
-for($i=0;$i<$rounds;$i++) {
+$gesamt_start = microtime(true);
+
+// Sprache auf Deutsch setzen
+putenv('LC_ALL=de_DE');
+setlocale(LC_ALL, 'de_DE');
+
+for($n=0;$n<$modules;$n++) {
 
     $time_start = microtime(true);
-
-    // Sprache auf Deutsch setzen
-    putenv('LC_ALL=de_DE');
-    setlocale(LC_ALL, 'de_DE');
 
     // Angeben des Pfads der Übersetzungstabellen
     bindtextdomain("forum", "./languages/");
     textdomain("forum");
 
-    echo _("back to buddy-list");
-    echo "<br />";
+    for($i=0;$i<$outputs;$i++)
+        echo _("back to buddy-list");
 
     $time_end = microtime(true);
     $time = $time_end - $time_start;
@@ -33,11 +36,15 @@ for($i=0;$i<$rounds;$i++) {
         $max = $time;
     if($time < $min)
         $min = $time;
+
 }
+
+$gesamt_end = microtime(true);
+$gesamt = $gesamt_end - $gesamt_start;
 
 ob_end_clean();
 
-printf("Gettext: durchschnittlich %f Sekunden (%f s / %f s)<br />", $sum/$i, $min, $max);
+printf("Gettext: %f gesamt, durchschnittlich %f Sekunden/Modul (%f s / %f s)<br />", $gesamt, $sum/$i, $min, $max);
 
 /* Array */
 
@@ -47,14 +54,17 @@ $min = 1.0;
 
 ob_start();
 
-for($i=0;$i<$rounds;$i++) {
+$gesamt_start = microtime(true);
+
+for($n=0;$n<$modules;$n++) {
 
     $time_start = microtime(true);
 
     include("languages/de_DE/forum.php");
 
-    echo $language_array['back_buddy'];
-    echo "<br />";
+
+    for($i=0;$i<$outputs;$i++)
+        echo $language_array['back_buddy'];
 
     $time_end = microtime(true);
     $time = $time_end - $time_start;
@@ -63,9 +73,13 @@ for($i=0;$i<$rounds;$i++) {
         $max = $time;
     if($time < $min)
         $min = $time;
+
 }
+
+$gesamt_end = microtime(true);
+$gesamt = $gesamt_end - $gesamt_start;
 
 ob_end_clean();
 
-printf("Array: durchschnittlich %f Sekunden (%f s / %f s)", $sum/$i, $min, $max);
+printf("Array: %f gesamt, durchschnittlich %f Sekunden/Modul (%f s / %f s)", $gesamt, $sum/$i, $min, $max);
 ?>
