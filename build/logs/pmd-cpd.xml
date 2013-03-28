@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pmd-cpd>
+  <duplication lines="17" tokens="26">
+    <file path="/var/lib/jenkins/jobs/webSPELL-5/workspace/core/lib/Spot/Type/Integer.php" line="12"/>
+    <file path="/var/lib/jenkins/jobs/webSPELL-5/workspace/core/lib/Spot/Type/Datetime.php" line="22"/>
+    <codefragment>        return (int) $value;
+    }
+
+    /**
+     * Geting value off Entity object
+     */
+    public static function get(Entity $entity, $value)
+    {
+        return self::cast($value);
+    }
+
+    /**
+     * Setting value on Entity object
+     */
+    public static function set(Entity $entity, $value)
+    {
+        return self::cast($value);
+</codefragment>
+  </duplication>
+  <duplication lines="17" tokens="27">
+    <file path="/var/lib/jenkins/jobs/webSPELL-5/workspace/core/lib/Spot/Type/Datetime.php" line="22"/>
+    <file path="/var/lib/jenkins/jobs/webSPELL-5/workspace/core/lib/Spot/Type/String.php" line="15"/>
+    <codefragment>        return $value;
+    }
+
+    /**
+     * Geting value off Entity object
+     */
+    public static function get(Entity $entity, $value)
+    {
+        return self::cast($value);
+    }
+
+    /**
+     * Setting value on Entity object
+     */
+    public static function set(Entity $entity, $value)
+    {
+        return self::cast($value);
+</codefragment>
+  </duplication>
+  <duplication lines="37" tokens="70">
+    <file path="/var/lib/jenkins/jobs/webSPELL-5/workspace/core/lib/Spot/Type/Datetime.php" line="2"/>
+    <file path="/var/lib/jenkins/jobs/webSPELL-5/workspace/core/lib/Spot/Type/Date.php" line="2"/>
+    <codefragment>namespace Spot\Type;
+use Spot\Entity;
+
+class Datetime implements TypeInterface
+{
+    /**
+     * Cast given value to type required
+     */
+    public static function cast($value)
+    {
+        if(is_string($value) || is_numeric($value)) {
+            // Create new \DateTime instance from string value
+            if (is_numeric($value)) {
+              $value = new \DateTime('@' . $value);
+            } else if ($value) {
+              $value = new \DateTime($value);
+            } else {
+              $value = null;
+            }
+        }
+        return $value;
+    }
+
+    /**
+     * Geting value off Entity object
+     */
+    public static function get(Entity $entity, $value)
+    {
+        return self::cast($value);
+    }
+
+    /**
+     * Setting value on Entity object
+     */
+    public static function set(Entity $entity, $value)
+    {
+        return self::cast($value);
+</codefragment>
+  </duplication>
+  <duplication lines="17" tokens="26">
+    <file path="/var/lib/jenkins/jobs/webSPELL-5/workspace/core/lib/Spot/Type/Integer.php" line="12"/>
+    <file path="/var/lib/jenkins/jobs/webSPELL-5/workspace/core/lib/Spot/Type/Boolean.php" line="12"/>
+    <codefragment>        return (int) $value;
+    }
+
+    /**
+     * Geting value off Entity object
+     */
+    public static function get(Entity $entity, $value)
+    {
+        return self::cast($value);
+    }
+
+    /**
+     * Setting value on Entity object
+     */
+    public static function set(Entity $entity, $value)
+    {
+        return self::cast($value);
+</codefragment>
+  </duplication>
+  <duplication lines="17" tokens="26">
+    <file path="/var/lib/jenkins/jobs/webSPELL-5/workspace/core/lib/Spot/Type/Integer.php" line="12"/>
+    <file path="/var/lib/jenkins/jobs/webSPELL-5/workspace/core/lib/Spot/Type/Float.php" line="12"/>
+    <codefragment>        return (int) $value;
+    }
+
+    /**
+     * Geting value off Entity object
+     */
+    public static function get(Entity $entity, $value)
+    {
+        return self::cast($value);
+    }
+
+    /**
+     * Setting value on Entity object
+     */
+    public static function set(Entity $entity, $value)
+    {
+        return self::cast($value);
+</codefragment>
+  </duplication>
+  <duplication lines="6" tokens="13">
+    <file path="/var/lib/jenkins/jobs/webSPELL-5/workspace/core/lib/Spot/Adapter/Mysql.php" line="227"/>
+    <file path="/var/lib/jenkins/jobs/webSPELL-5/workspace/core/lib/Spot/Adapter/Mysql.php" line="336"/>
+    <codefragment>                if(is_string($fieldInfo['index'])) {
+                    // Named group
+                    $fieldKeyName = $fieldInfo['index'];
+                }
+                $tableKeys['index'][$fieldKeyName][] = $fieldName;
+                $usedKeyNames[] = $fieldKeyName;
+</codefragment>
+  </duplication>
+  <duplication lines="27" tokens="62">
+    <file path="/var/lib/jenkins/jobs/webSPELL-5/workspace/core/lib/Spot/Relation/HasMany.php" line="65"/>
+    <file path="/var/lib/jenkins/jobs/webSPELL-5/workspace/core/lib/Spot/Relation/HasManyThrough.php" line="105"/>
+    <codefragment>    public function offsetExists($key) {
+        $this-&gt;execute();
+        return isset($this-&gt;_collection[$key]);
+    }
+    
+    public function offsetGet($key) {
+        $this-&gt;execute();
+        return $this-&gt;_collection[$key];
+    }
+    
+    public function offsetSet($key, $value) {
+        $this-&gt;execute();
+    
+        if($key === null) {
+            return $this-&gt;_collection[] = $value;
+        } else {
+            return $this-&gt;_collection[$key] = $value;
+        }
+    }
+    
+    public function offsetUnset($key) {
+        $this-&gt;execute();
+        unset($this-&gt;_collection[$key]);
+    }
+    // ----------------------------------------------
+}
+</codefragment>
+  </duplication>
+</pmd-cpd>
