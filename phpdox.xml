@@ -9,7 +9,7 @@
     <bootstrap />
 
     <!-- A phpDox project to process, you can have multiple projects in one config file -->
-    <project name="phpdox" source="${basedir}/src" workdir="${basedir}/xml">
+    <project name="webSPELL-5" source="/var/lib/jenkins/jobs/webSPELL-5/workspace" workdir="/var/lib/jenkins/jobs/webSPELL-5/workspace/build/phpdox">
         <!--  @name    - The name of the project -->
         <!--  @source  - The source directory of the application to process -->
         <!--  @workdir - The directory to store the xml data files in -->
