@@ -45,7 +45,7 @@
         </collector>
     
         <!--  Configuration of generation process -->
-	<generator output="/var/lib/jenkins/jobs/webSPELL-5/workspace/docs">
+	<generator output="/var/lib/jenkins/jobs/webSPELL-5/workspace/build/api">
             <!-- @output - (Base-)Directory to store output data in -->
             
             <!-- A generation process consists of one or more build tasks -->
