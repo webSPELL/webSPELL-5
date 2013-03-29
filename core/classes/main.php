@@ -2,7 +2,7 @@
 class Main {
 	public function __construct(){
 		
-		// Load everthing
+		// Load everything
 		$registry = Registry::getInstance();
 		$registry->set('debugLevel',3);
 		$registry->set('pathToLogFile','./log.txt');
@@ -14,7 +14,10 @@ class Main {
         $registry->set('template_modul',new Template('mod'));
         $registry->set('db', new Database());
         
-        
+        // initialize Spot
+        $cfg = new \Spot\Config();
+        $cfg->addConnection("mysql", "mysql://root:1234@localhost/ws_v5");
+        $registry->set('db', new \Spot\Mapper($cfg));
         
 		$render = new Render();
 		
