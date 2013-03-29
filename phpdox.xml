@@ -45,7 +45,7 @@
         </collector>
     
         <!--  Configuration of generation process -->
-        <generator output="${basedir}/docs">
+	<generator output="/var/lib/jenkins/jobs/webSPELL-5/workspace/docs">
             <!-- @output - (Base-)Directory to store output data in -->
             
             <!-- A generation process consists of one or more build tasks -->
@@ -59,7 +59,7 @@
 
             <!--  default engine "html" -->            
             <build engine="html" enabled="true" output="html">
-                <template dir="${phpDox.home}/templates/html" />
+		    <template dir="/usr/share/php/TheSeer/phpDox/templates/html" />
             </build>
             
             <!-- 
