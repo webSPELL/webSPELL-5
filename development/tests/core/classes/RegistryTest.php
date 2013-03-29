@@ -1,7 +1,6 @@
 <?php
-require_once("../../../../core/classes/pattern/singleton.php");
-require_once("../../../../core/classes/webspellexception.php");
-require_once("../../../../core/classes/registry.php");
+include('./development/tests/autoloader.php');
+
 class RegistryTest extends PHPUnit_Framework_TestCase
 {
     public function setUp(){
