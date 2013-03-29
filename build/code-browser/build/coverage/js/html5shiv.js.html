@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title>
+            Mayflower Code Browser - Source Code
+        </title>
+        <link rel="stylesheet" type="text/css" href="../../js/jquery.sidebar/css/codebrowser/sidebar.css" />
+        <link rel="stylesheet" type="text/css" href="../../css/global.css" />
+        <link rel="stylesheet" type="text/css" href="../../css/cruisecontrol.css" />
+        <link rel="stylesheet" type="text/css" href="../../css/review.css" />
+
+        <script type="text/javascript" src="../../js/jquery-1.4.2.min.js"></script>
+        <script type="text/javascript" src="../../js/jquery.sidebar/jquery-ui-1.7.2.custom.min.js"></script>
+        <script type="text/javascript" src="../../js/jquery.sidebar/jquery.sidebar.js"></script>
+        <script type="text/javascript" src="../../js/jquery.cluetip/lib/jquery.hoverIntent.js"></script>
+        <script type="text/javascript" src="../../js/jquery.cluetip/lib/jquery.bgiframe.min.js"></script>
+        <script type="text/javascript" src="../../js/jquery.cluetip/jquery.cluetip.min.js"></script>
+
+        <script type="text/javascript" src="../../js/review.js"></script>
+    </head>
+    <body class="codebrowser">
+        <div class="header">
+            <a href="./../../index.html">Go back to index</a> |
+            <a href="http://github.com/mayflowergmbh/PHP_CodeBrowser">PHP CodeBrowser</a>
+        </div>
+        <hr/>
+        <div id="review">
+            <div class="filepath">
+                build/coverage/js/html5shiv.js            </div>
+
+            <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html><body><div class="code"><ol class="code"><li id="line_1" class="odd"><span class="lineNumber">1&nbsp;</span>/*<a name="line_1"></a></li>
+<li id="line_2" class="even"><span class="lineNumber">2&nbsp;</span>&nbsp;HTML5&nbsp;Shiv&nbsp;v3.6.2pre&nbsp;|&nbsp;@afarkas&nbsp;@jdalton&nbsp;@jon_neal&nbsp;@rem&nbsp;|&nbsp;MIT/GPL2&nbsp;Licensed<a name="line_2"></a></li>
+<li id="line_3" class="odd"><span class="lineNumber">3&nbsp;</span>*/<a name="line_3"></a></li>
+<li id="line_4" class="even"><span class="lineNumber">4&nbsp;</span>(function(l,f){function&nbsp;m(){var&nbsp;a=e.elements;return"string"==typeof&nbsp;a?a.split("&nbsp;"):a}function&nbsp;i(a){var&nbsp;b=n[a[o]];b||(b={},h++,a[o]=h,n[h]=b);return&nbsp;b}function&nbsp;p(a,b,c){b||(b=f);if(g)return&nbsp;b.createElement(a);c||(c=i(b));b=c.cache[a]?c.cache[a].cloneNode():r.test(a)?(c.cache[a]=c.createElem(a)).cloneNode():c.createElem(a);return&nbsp;b.canHaveChildren&amp;&amp;!s.test(a)?c.frag.appendChild(b):b}function&nbsp;t(a,b){if(!b.cache)b.cache={},b.createElem=a.createElement,b.createFrag=a.createDocumentFragment,b.frag=b.createFrag();<a name="line_4"></a></li>
+<li id="line_5" class="odd"><span class="lineNumber">5&nbsp;</span>a.createElement=function(c){return!e.shivMethods?b.createElem(c):p(c,a,b)};a.createDocumentFragment=Function("h,f","return&nbsp;function(){var&nbsp;n=f.cloneNode(),c=n.createElement;h.shivMethods&amp;&amp;("+m().join().replace(/\w+/g,function(a){b.createElem(a);b.frag.createElement(a);return'c("'+a+'")'})+");return&nbsp;n}")(e,b.frag)}function&nbsp;q(a){a||(a=f);var&nbsp;b=i(a);if(e.shivCSS&amp;&amp;!j&amp;&amp;!b.hasCSS){var&nbsp;c,d=a;c=d.createElement("p");d=d.getElementsByTagName("head")[0]||d.documentElement;c.innerHTML="x&lt;style&gt;article,aside,figcaption,figure,footer,header,hgroup,nav,section{display:block}mark{background:#FF0;color:#000}&lt;/style&gt;";<a name="line_5"></a></li>
+<li id="line_6" class="even"><span class="lineNumber">6&nbsp;</span>c=d.insertBefore(c.lastChild,d.firstChild);b.hasCSS=!!c}g||t(a,b);return&nbsp;a}var&nbsp;k=l.html5||{},s=/^&lt;|^(?:button|map|select|textarea|object|iframe|option|optgroup)$/i,r=/^(?:a|b|code|div|fieldset|h1|h2|h3|h4|h5|h6|i|label|li|ol|p|q|span|strong|style|table|tbody|td|th|tr|ul)$/i,j,o="_html5shiv",h=0,n={},g;(function(){try{var&nbsp;a=f.createElement("a");a.innerHTML="&lt;xyz&gt;&lt;/xyz&gt;";j="hidden"in&nbsp;a;var&nbsp;b;if(!(b=1==a.childNodes.length)){f.createElement("a");var&nbsp;c=f.createDocumentFragment();b="undefined"==typeof&nbsp;c.cloneNode||<a name="line_6"></a></li>
+<li id="line_7" class="odd"><span class="lineNumber">7&nbsp;</span>"undefined"==typeof&nbsp;c.createDocumentFragment||"undefined"==typeof&nbsp;c.createElement}g=b}catch(d){g=j=!0}})();var&nbsp;e={elements:k.elements||"abbr&nbsp;article&nbsp;aside&nbsp;audio&nbsp;bdi&nbsp;canvas&nbsp;data&nbsp;datalist&nbsp;details&nbsp;figcaption&nbsp;figure&nbsp;footer&nbsp;header&nbsp;hgroup&nbsp;mark&nbsp;meter&nbsp;nav&nbsp;output&nbsp;progress&nbsp;section&nbsp;summary&nbsp;time&nbsp;video",version:"3.6.2pre",shivCSS:!1!==k.shivCSS,supportsUnknownElements:g,shivMethods:!1!==k.shivMethods,type:"default",shivDocument:q,createElement:p,createDocumentFragment:function(a,b){a||(a=f);if(g)return&nbsp;a.createDocumentFragment();<a name="line_7"></a></li>
+<li id="line_8" class="even"><span class="lineNumber">8&nbsp;</span>for(var&nbsp;b=b||i(a),c=b.frag.cloneNode(),d=0,e=m(),h=e.length;d&lt;h;d++)c.createElement(e[d]);return&nbsp;c}};l.html5=e;q(f)})(this,document);<a name="line_8"></a></li></ol></div></body></html>
+                    </div>
+    </body>
+</html>

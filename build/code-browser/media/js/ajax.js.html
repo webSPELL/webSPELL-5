@@ -1,0 +1,101 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title>
+            Mayflower Code Browser - Source Code
+        </title>
+        <link rel="stylesheet" type="text/css" href="../js/jquery.sidebar/css/codebrowser/sidebar.css" />
+        <link rel="stylesheet" type="text/css" href="../css/global.css" />
+        <link rel="stylesheet" type="text/css" href="../css/cruisecontrol.css" />
+        <link rel="stylesheet" type="text/css" href="../css/review.css" />
+
+        <script type="text/javascript" src="../js/jquery-1.4.2.min.js"></script>
+        <script type="text/javascript" src="../js/jquery.sidebar/jquery-ui-1.7.2.custom.min.js"></script>
+        <script type="text/javascript" src="../js/jquery.sidebar/jquery.sidebar.js"></script>
+        <script type="text/javascript" src="../js/jquery.cluetip/lib/jquery.hoverIntent.js"></script>
+        <script type="text/javascript" src="../js/jquery.cluetip/lib/jquery.bgiframe.min.js"></script>
+        <script type="text/javascript" src="../js/jquery.cluetip/jquery.cluetip.min.js"></script>
+
+        <script type="text/javascript" src="../js/review.js"></script>
+    </head>
+    <body class="codebrowser">
+        <div class="header">
+            <a href="./../index.html">Go back to index</a> |
+            <a href="http://github.com/mayflowergmbh/PHP_CodeBrowser">PHP CodeBrowser</a>
+        </div>
+        <hr/>
+        <div id="review">
+            <div class="filepath">
+                media/js/ajax.js            </div>
+
+            <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html><body><div class="code"><ol class="code"><li id="line_1" class="odd"><span class="lineNumber">&nbsp;1&nbsp;</span>function&nbsp;Ajax()&nbsp;{<a name="line_1"></a></li>
+<li id="line_2" class="even"><span class="lineNumber">&nbsp;2&nbsp;</span>	this.requestUrl			=&nbsp;'';<a name="line_2"></a></li>
+<li id="line_3" class="odd"><span class="lineNumber">&nbsp;3&nbsp;</span>	this.requestParams		=&nbsp;'';<a name="line_3"></a></li>
+<li id="line_4" class="even"><span class="lineNumber">&nbsp;4&nbsp;</span>	this.requestMethod		=&nbsp;'GET';<a name="line_4"></a></li>
+<li id="line_5" class="odd"><span class="lineNumber">&nbsp;5&nbsp;</span>	this.requestAsync		=&nbsp;true;<a name="line_5"></a></li>
+<li id="line_6" class="even"><span class="lineNumber">&nbsp;6&nbsp;</span>	this.onRequestSuccess	=&nbsp;null;<a name="line_6"></a></li>
+<li id="line_7" class="odd"><span class="lineNumber">&nbsp;7&nbsp;</span>	this.onRequestError		=&nbsp;function(msg)&nbsp;{window.alert(msg);};<a name="line_7"></a></li>
+<li id="line_8" class="even"><span class="lineNumber">&nbsp;8&nbsp;</span>}<a name="line_8"></a></li>
+<li id="line_9" class="odd"><span class="lineNumber">&nbsp;9&nbsp;</span><a name="line_9"></a></li>
+<li id="line_10" class="even"><span class="lineNumber">10&nbsp;</span>Ajax.prototype.request&nbsp;=&nbsp;function()<a name="line_10"></a></li>
+<li id="line_11" class="odd"><span class="lineNumber">11&nbsp;</span>{<a name="line_11"></a></li>
+<li id="line_12" class="even"><span class="lineNumber">12&nbsp;</span>	if(!this.requestUrl)&nbsp;{<a name="line_12"></a></li>
+<li id="line_13" class="odd"><span class="lineNumber">13&nbsp;</span>		this.onRequestError('No&nbsp;request&nbsp;URL&nbsp;given.');<a name="line_13"></a></li>
+<li id="line_14" class="even"><span class="lineNumber">14&nbsp;</span>		return&nbsp;false;<a name="line_14"></a></li>
+<li id="line_15" class="odd"><span class="lineNumber">15&nbsp;</span>	}<a name="line_15"></a></li>
+<li id="line_16" class="even"><span class="lineNumber">16&nbsp;</span>	<a name="line_16"></a></li>
+<li id="line_17" class="odd"><span class="lineNumber">17&nbsp;</span>	if&nbsp;(!this.requestMethod)&nbsp;{<a name="line_17"></a></li>
+<li id="line_18" class="even"><span class="lineNumber">18&nbsp;</span>		this.onRequestError('No&nbsp;request&nbsp;method&nbsp;given.');<a name="line_18"></a></li>
+<li id="line_19" class="odd"><span class="lineNumber">19&nbsp;</span>		return&nbsp;false;<a name="line_19"></a></li>
+<li id="line_20" class="even"><span class="lineNumber">20&nbsp;</span>	}&nbsp;<a name="line_20"></a></li>
+<li id="line_21" class="odd"><span class="lineNumber">21&nbsp;</span>	this.requestMethod&nbsp;=&nbsp;this.requestMethod.toUpperCase();<a name="line_21"></a></li>
+<li id="line_22" class="even"><span class="lineNumber">22&nbsp;</span>	<a name="line_22"></a></li>
+<li id="line_23" class="odd"><span class="lineNumber">23&nbsp;</span>	var&nbsp;xmlHttpRequest;<a name="line_23"></a></li>
+<li id="line_24" class="even"><span class="lineNumber">24&nbsp;</span>	if&nbsp;(window.XMLHttpRequest)&nbsp;xmlHttpRequest&nbsp;=&nbsp;XMLHttpRequest();<a name="line_24"></a></li>
+<li id="line_25" class="odd"><span class="lineNumber">25&nbsp;</span>	else&nbsp;if(window.ActiveXObject)&nbsp;{<a name="line_25"></a></li>
+<li id="line_26" class="even"><span class="lineNumber">26&nbsp;</span>		try&nbsp;{&nbsp;xmlHttpRequest&nbsp;=&nbsp;ActiveXObject("Msxml2.XMLHTTP");}<a name="line_26"></a></li>
+<li id="line_27" class="odd"><span class="lineNumber">27&nbsp;</span>		catch(e)&nbsp;{<a name="line_27"></a></li>
+<li id="line_28" class="even"><span class="lineNumber">28&nbsp;</span>			try&nbsp;{&nbsp;xmlHttpRequest&nbsp;=&nbsp;ActiveXObject("Microsoft.XMLHTTP");&nbsp;}<a name="line_28"></a></li>
+<li id="line_29" class="odd"><span class="lineNumber">29&nbsp;</span>			catch&nbsp;(e)&nbsp;{&nbsp;xmlHttpRequest&nbsp;=&nbsp;false;&nbsp;}<a name="line_29"></a></li>
+<li id="line_30" class="even"><span class="lineNumber">30&nbsp;</span>		}<a name="line_30"></a></li>
+<li id="line_31" class="odd"><span class="lineNumber">31&nbsp;</span>	}<a name="line_31"></a></li>
+<li id="line_32" class="even"><span class="lineNumber">32&nbsp;</span>	<a name="line_32"></a></li>
+<li id="line_33" class="odd"><span class="lineNumber">33&nbsp;</span>	if(xmlHttpRequest)&nbsp;{<a name="line_33"></a></li>
+<li id="line_34" class="even"><span class="lineNumber">34&nbsp;</span>		var&nbsp;_this&nbsp;=&nbsp;this;<a name="line_34"></a></li>
+<li id="line_35" class="odd"><span class="lineNumber">35&nbsp;</span>		<a name="line_35"></a></li>
+<li id="line_36" class="even"><span class="lineNumber">36&nbsp;</span>		function&nbsp;handler()	{<a name="line_36"></a></li>
+<li id="line_37" class="odd"><span class="lineNumber">37&nbsp;</span>			if&nbsp;(xmlHttpRequest.readyState&nbsp;&lt;&nbsp;4)&nbsp;return&nbsp;false;<a name="line_37"></a></li>
+<li id="line_38" class="even"><span class="lineNumber">38&nbsp;</span>			<a name="line_38"></a></li>
+<li id="line_39" class="odd"><span class="lineNumber">39&nbsp;</span>			if&nbsp;(xmlHttpRequest.status&nbsp;==&nbsp;200&nbsp;||&nbsp;xmlHttpRequest.status&nbsp;==&nbsp;304)&nbsp;{<a name="line_39"></a></li>
+<li id="line_40" class="even"><span class="lineNumber">40&nbsp;</span>				if&nbsp;(_this.onRequestSuccess)	_this.onRequestSuccess(xmlHttpRequest.responseText,&nbsp;xmlHttpRequest.responseXML);<a name="line_40"></a></li>
+<li id="line_41" class="odd"><span class="lineNumber">41&nbsp;</span>			}&nbsp;<a name="line_41"></a></li>
+<li id="line_42" class="even"><span class="lineNumber">42&nbsp;</span>			else&nbsp;{<a name="line_42"></a></li>
+<li id="line_43" class="odd"><span class="lineNumber">43&nbsp;</span>				if&nbsp;(_this.onRequestError)&nbsp;_this.onRequestError(xmlHttpRequest.status&nbsp;+&nbsp;"&nbsp;"&nbsp;+&nbsp;xmlHttpRequest.statusText&nbsp;+&nbsp;":&nbsp;Error&nbsp;while&nbsp;transfering&nbsp;data.");<a name="line_43"></a></li>
+<li id="line_44" class="even"><span class="lineNumber">44&nbsp;</span>			}<a name="line_44"></a></li>
+<li id="line_45" class="odd"><span class="lineNumber">45&nbsp;</span>		}<a name="line_45"></a></li>
+<li id="line_46" class="even"><span class="lineNumber">46&nbsp;</span>		<a name="line_46"></a></li>
+<li id="line_47" class="odd"><span class="lineNumber">47&nbsp;</span>		switch&nbsp;(this.requestMethod)&nbsp;{<a name="line_47"></a></li>
+<li id="line_48" class="even"><span class="lineNumber">48&nbsp;</span>			case&nbsp;"GET":	<a name="line_48"></a></li>
+<li id="line_49" class="odd"><span class="lineNumber">49&nbsp;</span>				xmlHttpRequest.open(this.requestMethod,&nbsp;this.requestUrl&nbsp;+&nbsp;'?'&nbsp;+&nbsp;this.requestParams,&nbsp;this.requestAsync);<a name="line_49"></a></li>
+<li id="line_50" class="even"><span class="lineNumber">50&nbsp;</span>				xmlHttpRequest.onreadystatechange&nbsp;=&nbsp;handler;<a name="line_50"></a></li>
+<li id="line_51" class="odd"><span class="lineNumber">51&nbsp;</span>				xmlHttpRequest.send(null);<a name="line_51"></a></li>
+<li id="line_52" class="even"><span class="lineNumber">52&nbsp;</span>			break;<a name="line_52"></a></li>
+<li id="line_53" class="odd"><span class="lineNumber">53&nbsp;</span>			<a name="line_53"></a></li>
+<li id="line_54" class="even"><span class="lineNumber">54&nbsp;</span>			case&nbsp;"POST":&nbsp;<a name="line_54"></a></li>
+<li id="line_55" class="odd"><span class="lineNumber">55&nbsp;</span>				xmlHttpRequest.open(this.requestMethod,&nbsp;this.requestUrl,&nbsp;this.requestAsync);<a name="line_55"></a></li>
+<li id="line_56" class="even"><span class="lineNumber">56&nbsp;</span>				xmlHttpRequest.onreadystatechange&nbsp;=&nbsp;handler;<a name="line_56"></a></li>
+<li id="line_57" class="odd"><span class="lineNumber">57&nbsp;</span>				xmlHttpRequest.setRequestHeader('Content-Type',&nbsp;'application/x-www-form-urlencoded');<a name="line_57"></a></li>
+<li id="line_58" class="even"><span class="lineNumber">58&nbsp;</span>				xmlHttpRequest.send(this.requestParams);<a name="line_58"></a></li>
+<li id="line_59" class="odd"><span class="lineNumber">59&nbsp;</span>			break;<a name="line_59"></a></li>
+<li id="line_60" class="even"><span class="lineNumber">60&nbsp;</span>		}<a name="line_60"></a></li>
+<li id="line_61" class="odd"><span class="lineNumber">61&nbsp;</span>	}<a name="line_61"></a></li>
+<li id="line_62" class="even"><span class="lineNumber">62&nbsp;</span>	else&nbsp;{<a name="line_62"></a></li>
+<li id="line_63" class="odd"><span class="lineNumber">63&nbsp;</span>		this.onRequestError('XML&nbsp;http&nbsp;request&nbsp;object&nbsp;creation&nbsp;failed.');<a name="line_63"></a></li>
+<li id="line_64" class="even"><span class="lineNumber">64&nbsp;</span>		return&nbsp;false;<a name="line_64"></a></li>
+<li id="line_65" class="odd"><span class="lineNumber">65&nbsp;</span>	}<a name="line_65"></a></li>
+<li id="line_66" class="even"><span class="lineNumber">66&nbsp;</span>};<a name="line_66"></a></li></ol></div></body></html>
+                    </div>
+    </body>
+</html>

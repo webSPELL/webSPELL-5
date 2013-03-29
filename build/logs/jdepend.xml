@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PDepend>
+  <Packages>
+    <Package name="+global">
+      <Stats>
+        <TotalClasses>59</TotalClasses>
+        <ConcreteClasses>56</ConcreteClasses>
+        <AbstractClasses>3</AbstractClasses>
+        <Ca>0</Ca>
+        <Ce>4</Ce>
+        <A>0.050847457627119</A>
+        <I>1</I>
+        <D>0.050847457627119</D>
+      </Stats>
+      <ConcreteClasses>
+        <Class sourceFile="/var/lib/jenkins/jobs/webSPELL-5/workspace/core/classes/ArrayHelper.php">ArrayHelper</Class>
+        <Class sourceFile="/var/lib/jenkins/jobs/webSPELL-5/workspace/core/classes/Autoload.php">Autoload</Class>
+        <Class sourceFile="/var/lib/jenkins/jobs/webSPELL-5/workspace/core/classes/Factory.php">Factory</Class>
+        <Class sourceFile="/var/lib/jenkins/jobs/webSPELL-5/workspace/core/classes/backup.php">Backup</Class>
+        <Class sourceFile="/var/lib/jenkins/jobs/webSPELL-5/workspace/core/classes/captcha/default.php">Captcha_Default</Class>
+        <Class sourceFile="/var/lib/jenkins/jobs/webSPELL-5/workspace/core/classes/captcha/math.php">Captcha_Math</Class>
+        <Class sourceFile="/var/lib/jenkins/jobs/webSPELL-5/workspace/core/classes/captcha/recaptcha.php">Captcha_ReCaptcha</Class>
+        <Class sourceFile="/var/lib/jenkins/jobs/webSPELL-5/workspace/core/classes/classconflict.php">ClassConflict</Class>
+        <Class sourceFile="/var/lib/jenkins/jobs/webSPELL-5/workspace/core/classes/database.php">Database</Class>
+        <Class sourceFile="/var/lib/jenkins/jobs/webSPELL-5/workspace/core/classes/db/logmapper.php">logMapper</Class>
+        <Class sourceFile="/var/lib/jenkins/jobs/webSPELL-5/workspace/core/classes/db/notificationmapper.php">notificationMapper</Class>
+        <Class sourceFile="/var/lib/jenkins/jobs/webSPELL-5/workspace/core/classes/db/settingsmapper.php">settingsMapper</Class>
+        <Class sourceFile="/var/lib/jenkins/jobs/webSPELL-5/workspace/core/classes/db/useraccessrightsmapper.php">userAccessRightsMapper</Class>
+        <Class sourceFile="/var/lib/jenkins/jobs/webSPELL-5/workspace/core/classes/db/usergroupaccessrightsmapper.php">userGroupAccessRightsMapper</Class>
+        <Class sourceFile="/var/lib/jenkins/jobs/webSPELL-5/workspace/core/classes/db/usergroupsmapper.php">userGroupsMapper</Class>
+        <Class sourceFile="/var/lib/jenkins/jobs/webSPELL-5/workspace/core/classes/db/usermapper.php">userMapper</Class>
+        <Class sourceFile="/var/lib/jenkins/jobs/webSPELL-5/workspace/core/classes/db/usermembershipsmapper.php">userMembershipsMapper</Class>
+        <Class sourceFile="/var/lib/jenkins/jobs/webSPELL-5/workspace/core/classes/db/userpropertiesmapper.php">userPropertiesMapper</Class>
+        <Class sourceFile="/var/lib/jenkins/jobs/webSPELL-5/workspace/core/classes/db/userpropertiesvaluesmapper.php">userPropertiesValuesMapper</Class>
+        <Class sourceFile="/var/lib/jenkins/jobs/webSPELL-5/workspace/core/classes/filesystem.php">FileSystem</Class>
+        <Class sourceFile="/var/lib/jenkins/jobs/webSPELL-5/workspace/core/classes/http/curl.php">HttpRequest_CURL</Class>
+        <Class sourceFile="/var/lib/jenkins/jobs/webSPELL-5/workspace/core/classes/http/fopen.php">HttpRequest_FOPEN</Class>
+        <Class sourceFile="/var/lib/jenkins/jobs/webSPELL-5/workspace/core/classes/http/interface.php">HttpRequest_Options</Class>
+        <Class sourceFile="/var/lib/jenkins/jobs/webSPELL-5/workspace/core/classes/http/interface.php">HttpRequest_Interface</Class>
+        <Class sourceFile="/var/lib/jenkins/jobs/webSPELL-5/workspace/core/classes/image.php">Image</Class>
+        <Class sourceFile="/var/lib/jenkins/jobs/webSPELL-5/workspace/core/classes/language.php">Language</Class>
+        <Class sourceFile="/var/lib/jenkins/jobs/webSPELL-5/workspace/core/classes/loggedpdo.php">LoggedPDO</Class>
+        <Class sourceFile="/var/lib/jenkins/jobs/webSPELL-5/workspace/core/classes/loggedpdo.php">LoggedPDOStatement</Class>
+        <Class sourceFile="/var/lib/jenkins/jobs/webSPELL-5/workspace/core/classes/mail/sendmail.php">Mail_Sendmail</Class>
+        <Class sourceFile="/var/lib/jenkins/jobs/webSPELL-5/workspace/core/classes/mail/smtp.php">Mail_Smtp</Class>
+        <Class sourceFile="/var/lib/jenkins/jobs/webSPELL-5/workspace/core/classes/main.php">Main</Class>
+        <Class sourceFile="/var/lib/jenkins/jobs/webSPELL-5/workspace/core/classes/model/user.php">User</Class>
+        <Class sourceFile="/var/lib/jenkins/jobs/webSPELL-5/workspace/core/classes/pattern/singleton.php">Pattern_Singleton</Class>
+        <Class sourceFile="/var/lib/jenkins/jobs/webSPELL-5/workspace/core/classes/registry.php">Registry</Class>
+        <Class sourceFile="/var/lib/jenkins/jobs/webSPELL-5/workspace/core/classes/render.php">Render</Class>
+        <Class sourceFile="/var/lib/jenkins/jobs/webSPELL-5/workspace/core/classes/session.php">Session</Class>
+        <Class sourceFile="/var/lib/jenkins/jobs/webSPELL-5/workspace/core/classes/template.class.php">Template</Class>
+        <Class sourceFile="/var/lib/jenkins/jobs/webSPELL-5/workspace/core/classes/template.php">Template</Class>
+        <Class sourceFile="/var/lib/jenkins/jobs/webSPELL-5/workspace/core/classes/upload.php">Upload</Class>
+        <Class sourceFile="/var/lib/jenkins/jobs/webSPELL-5/workspace/core/classes/url.php">Url</Class>
+        <Class sourceFile="/var/lib/jenkins/jobs/webSPELL-5/workspace/core/classes/validate.php">Validate</Class>
+        <Class sourceFile="/var/lib/jenkins/jobs/webSPELL-5/workspace/core/classes/visitor.php">Visitor</Class>
+        <Class sourceFile="/var/lib/jenkins/jobs/webSPELL-5/workspace/core/classes/webspellexception.php">WebspellException</Class>
+        <Class sourceFile="/var/lib/jenkins/jobs/webSPELL-5/workspace/modules/example/index.php">Module_Example</Class>
+        <Class sourceFile="/var/lib/jenkins/jobs/webSPELL-5/workspace/modules/news/index.php">Module_News</Class>
+      </ConcreteClasses>
+      <AbstractClasses>
+        <Class sourceFile="/var/lib/jenkins/jobs/webSPELL-5/workspace/core/classes/captcha/interface.php">Captcha_Interface</Class>
+        <Class sourceFile="/var/lib/jenkins/jobs/webSPELL-5/workspace/core/classes/mail/interface.php">Mail_Interface</Class>
+        <Class sourceFile="/var/lib/jenkins/jobs/webSPELL-5/workspace/core/classes/module.php">Module</Class>
+      </AbstractClasses>
+      <DependsUpon>
+        <Package>+core</Package>
+        <Package>+pdo</Package>
+        <Package>+zip</Package>
+        <Package>Spot</Package>
+      </DependsUpon>
+      <UsedBy/>
+    </Package>
+    <Package name="Spot\Adapter">
+      <Stats>
+        <TotalClasses>9</TotalClasses>
+        <ConcreteClasses>6</ConcreteClasses>
+        <AbstractClasses>3</AbstractClasses>
+        <Ca>1</Ca>
+        <Ce>3</Ce>
+        <A>0.33333333333333</A>
+        <I>0.75</I>
+        <D>0.083333333333333</D>
+      </Stats>
+      <ConcreteClasses>
+        <Class sourceFile="/var/lib/jenkins/jobs/webSPELL-5/workspace/core/lib/Spot/Adapter/Mongodb.php">Mongodb</Class>
+        <Class sourceFile="/var/lib/jenkins/jobs/webSPELL-5/workspace/core/lib/Spot/Adapter/Mysql.php">Mysql</Class>
+      </ConcreteClasses>
+      <AbstractClasses>
+        <Class sourceFile="/var/lib/jenkins/jobs/webSPELL-5/workspace/core/lib/Spot/Adapter/AdapterAbstract.php">AdapterAbstract</Class>
+        <Class sourceFile="/var/lib/jenkins/jobs/webSPELL-5/workspace/core/lib/Spot/Adapter/AdapterInterface.php">AdapterInterface</Class>
+        <Class sourceFile="/var/lib/jenkins/jobs/webSPELL-5/workspace/core/lib/Spot/Adapter/PDO/Abstract.php">PDO_Abstract</Class>
+      </AbstractClasses>
+      <DependsUpon>
+        <Package></Package>
+        <Package>Spot</Package>
+        <Package>Spot\Adapter\Exception</Package>
+      </DependsUpon>
+      <UsedBy>
+        <Package>Spot</Package>
+      </UsedBy>
+    </Package>
+    <Package name="Spot">
+      <Stats>
+        <TotalClasses>8</TotalClasses>
+        <ConcreteClasses>6</ConcreteClasses>
+        <AbstractClasses>2</AbstractClasses>
+        <Ca>6</Ca>
+        <Ce>3</Ce>
+        <A>0.25</A>
+        <I>0.33333333333333</I>
+        <D>0.41666666666667</D>
+      </Stats>
+      <ConcreteClasses>
+        <Class sourceFile="/var/lib/jenkins/jobs/webSPELL-5/workspace/core/lib/Spot/Config.php">Config</Class>
+        <Class sourceFile="/var/lib/jenkins/jobs/webSPELL-5/workspace/core/lib/Spot/Exception.php">Exception</Class>
+        <Class sourceFile="/var/lib/jenkins/jobs/webSPELL-5/workspace/core/lib/Spot/Exception/Datasource/Missing.php">Exception_Datasource_Missing</Class>
+        <Class sourceFile="/var/lib/jenkins/jobs/webSPELL-5/workspace/core/lib/Spot/Log.php">Log</Class>
+        <Class sourceFile="/var/lib/jenkins/jobs/webSPELL-5/workspace/core/lib/Spot/Mapper.php">Mapper</Class>
+        <Class sourceFile="/var/lib/jenkins/jobs/webSPELL-5/workspace/core/lib/Spot/Query.php">Query</Class>
+      </ConcreteClasses>
+      <AbstractClasses>
+        <Class sourceFile="/var/lib/jenkins/jobs/webSPELL-5/workspace/core/lib/Spot/Entity.php">Entity</Class>
+        <Class sourceFile="/var/lib/jenkins/jobs/webSPELL-5/workspace/core/lib/Spot/QueryInterface.php">QueryInterface</Class>
+      </AbstractClasses>
+      <DependsUpon>
+        <Package></Package>
+        <Package>Spot\Adapter</Package>
+        <Package>Spot\Entity</Package>
+      </DependsUpon>
+      <UsedBy>
+        <Package>+global</Package>
+        <Package>Spot\Adapter</Package>
+        <Package>Spot\Entity</Package>
+        <Package>Spot\Exception</Package>
+        <Package>Spot\Relation</Package>
+        <Package>Spot\Type</Package>
+      </UsedBy>
+    </Package>
+    <Package name="Spot\Entity">
+      <Stats>
+        <TotalClasses>2</TotalClasses>
+        <ConcreteClasses>2</ConcreteClasses>
+        <AbstractClasses>0</AbstractClasses>
+        <Ca>2</Ca>
+        <Ce>2</Ce>
+        <A>0</A>
+        <I>0.5</I>
+        <D>0.5</D>
+      </Stats>
+      <ConcreteClasses>
+        <Class sourceFile="/var/lib/jenkins/jobs/webSPELL-5/workspace/core/lib/Spot/Entity/Collection.php">Collection</Class>
+        <Class sourceFile="/var/lib/jenkins/jobs/webSPELL-5/workspace/core/lib/Spot/Entity/Manager.php">Manager</Class>
+      </ConcreteClasses>
+      <AbstractClasses/>
+      <DependsUpon>
+        <Package></Package>
+        <Package>Spot</Package>
+      </DependsUpon>
+      <UsedBy>
+        <Package>Spot</Package>
+        <Package>Spot\Relation</Package>
+      </UsedBy>
+    </Package>
+    <Package name="Spot\Exception">
+      <Stats>
+        <TotalClasses>1</TotalClasses>
+        <ConcreteClasses>1</ConcreteClasses>
+        <AbstractClasses>0</AbstractClasses>
+        <Ca>0</Ca>
+        <Ce>1</Ce>
+        <A>0</A>
+        <I>1</I>
+        <D>0</D>
+      </Stats>
+      <ConcreteClasses>
+        <Class sourceFile="/var/lib/jenkins/jobs/webSPELL-5/workspace/core/lib/Spot/Exception/Unsupported.php">Unsupported</Class>
+      </ConcreteClasses>
+      <AbstractClasses/>
+      <DependsUpon>
+        <Package>Spot</Package>
+      </DependsUpon>
+      <UsedBy/>
+    </Package>
+    <Package name="Spot\Relation">
+      <Stats>
+        <TotalClasses>4</TotalClasses>
+        <ConcreteClasses>3</ConcreteClasses>
+        <AbstractClasses>1</AbstractClasses>
+        <Ca>0</Ca>
+        <Ce>3</Ce>
+        <A>0.25</A>
+        <I>1</I>
+        <D>0.25</D>
+      </Stats>
+      <ConcreteClasses>
+        <Class sourceFile="/var/lib/jenkins/jobs/webSPELL-5/workspace/core/lib/Spot/Relation/HasMany.php">HasMany</Class>
+        <Class sourceFile="/var/lib/jenkins/jobs/webSPELL-5/workspace/core/lib/Spot/Relation/HasManyThrough.php">HasManyThrough</Class>
+        <Class sourceFile="/var/lib/jenkins/jobs/webSPELL-5/workspace/core/lib/Spot/Relation/HasOne.php">HasOne</Class>
+      </ConcreteClasses>
+      <AbstractClasses>
+        <Class sourceFile="/var/lib/jenkins/jobs/webSPELL-5/workspace/core/lib/Spot/Relation/RelationAbstract.php">RelationAbstract</Class>
+      </AbstractClasses>
+      <DependsUpon>
+        <Package></Package>
+        <Package>Spot</Package>
+        <Package>Spot\Entity</Package>
+      </DependsUpon>
+      <UsedBy/>
+    </Package>
+    <Package name="Spot\Type">
+      <Stats>
+        <TotalClasses>7</TotalClasses>
+        <ConcreteClasses>6</ConcreteClasses>
+        <AbstractClasses>1</AbstractClasses>
+        <Ca>0</Ca>
+        <Ce>2</Ce>
+        <A>0.14285714285714</A>
+        <I>1</I>
+        <D>0.14285714285714</D>
+      </Stats>
+      <ConcreteClasses>
+        <Class sourceFile="/var/lib/jenkins/jobs/webSPELL-5/workspace/core/lib/Spot/Type/Boolean.php">Boolean</Class>
+        <Class sourceFile="/var/lib/jenkins/jobs/webSPELL-5/workspace/core/lib/Spot/Type/Date.php">Datetime</Class>
+        <Class sourceFile="/var/lib/jenkins/jobs/webSPELL-5/workspace/core/lib/Spot/Type/Datetime.php">Datetime</Class>
+        <Class sourceFile="/var/lib/jenkins/jobs/webSPELL-5/workspace/core/lib/Spot/Type/Float.php">Float</Class>
+        <Class sourceFile="/var/lib/jenkins/jobs/webSPELL-5/workspace/core/lib/Spot/Type/Integer.php">Integer</Class>
+        <Class sourceFile="/var/lib/jenkins/jobs/webSPELL-5/workspace/core/lib/Spot/Type/String.php">String</Class>
+      </ConcreteClasses>
+      <AbstractClasses>
+        <Class sourceFile="/var/lib/jenkins/jobs/webSPELL-5/workspace/core/lib/Spot/Type/TypeInterface.php">TypeInterface</Class>
+      </AbstractClasses>
+      <DependsUpon>
+        <Package></Package>
+        <Package>Spot</Package>
+      </DependsUpon>
+      <UsedBy/>
+    </Package>
+  </Packages>
+  <Cycles>
+    <Package Name="+global">
+      <Package>+global</Package>
+      <Package>Spot</Package>
+      <Package>Spot\Adapter</Package>
+      <Package>Spot</Package>
+    </Package>
+    <Package Name="Spot\Adapter">
+      <Package>Spot\Adapter</Package>
+      <Package>Spot</Package>
+      <Package>Spot\Adapter</Package>
+    </Package>
+    <Package Name="Spot">
+      <Package>Spot</Package>
+      <Package>Spot\Adapter</Package>
+      <Package>Spot</Package>
+    </Package>
+    <Package Name="Spot\Entity">
+      <Package>Spot\Entity</Package>
+      <Package>Spot</Package>
+      <Package>Spot\Adapter</Package>
+      <Package>Spot</Package>
+    </Package>
+    <Package Name="Spot\Exception">
+      <Package>Spot\Exception</Package>
+      <Package>Spot</Package>
+      <Package>Spot\Adapter</Package>
+      <Package>Spot</Package>
+    </Package>
+    <Package Name="Spot\Relation">
+      <Package>Spot\Relation</Package>
+      <Package>Spot</Package>
+      <Package>Spot\Adapter</Package>
+      <Package>Spot</Package>
+    </Package>
+    <Package Name="Spot\Type">
+      <Package>Spot\Type</Package>
+      <Package>Spot</Package>
+      <Package>Spot\Adapter</Package>
+      <Package>Spot</Package>
+    </Package>
+  </Cycles>
+</PDepend>
