@@ -58,7 +58,7 @@
                  please check the documentation for the engine to find out more -->
 
             <!--  default engine "html" -->            
-            <build engine="html" enabled="true" output="html">
+            <build engine="html" enabled="true">
 		    <template dir="/usr/share/php/TheSeer/phpDox/templates/html" />
             </build>
             
