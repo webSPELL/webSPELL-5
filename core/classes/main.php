@@ -11,11 +11,10 @@ class Main {
 		$registry->set('url', new Url());
 		$registry->get('url')->parseQueryString();
         $registry->set('template_modul',new Template('mod'));
-        $registry->set('db', new Database());
         
         // load config file
         include('config.php');
-
+        
         // initialize Spot
         $cfg = new \Spot\Config();
         $cfg->addConnection("default_connection", $database['type']."://".$database['user'].":".$database['password']."@".$database['host']."/".$database['dbname']);
