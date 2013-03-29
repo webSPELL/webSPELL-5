@@ -6,7 +6,7 @@ class UrlTest extends PHPUnit_Framework_TestCase {
         Registry::getInstance()->set('modRewrite',true);
     }
     /**
-     * @dataProvider testData
+     * @dataProvider data
      */
 
     public function testAdd($input, $expectedUrl) {
@@ -30,7 +30,7 @@ class UrlTest extends PHPUnit_Framework_TestCase {
 
     }
 
-    public function testData() {
+    public function data() {
 
         return array(
             Array(Array('module'=>'user'), '/user.html'),
