@@ -4,59 +4,50 @@ include('../../../../core/classes/registry.php');
 Registry::getInstance()->set('modRewrite',true);
 include('../../../../core/classes/webspellexception.php');
 include('../../../../core/classes/url.php');
-function arrayRecursiveDiff($aArray1, $aArray2) { 
-    $aReturn = array(); 
-   
-    foreach ($aArray1 as $mKey => $mValue) { 
-        if (array_key_exists($mKey, $aArray2)) { 
-            if (is_array($mValue)) { 
-                $aRecursiveDiff = arrayRecursiveDiff($mValue, $aArray2[$mKey]); 
-                if (count($aRecursiveDiff)) { $aReturn[$mKey] = $aRecursiveDiff; } 
-            } else { 
-                if ($mValue != $aArray2[$mKey]) { 
-                    $aReturn[$mKey] = $mValue; 
-                } 
-            } 
-        } else { 
-            $aReturn[$mKey] = $mValue; 
-        } 
-    } 
-   
-    return $aReturn; 
-}
 
-$input = Array(
-			Array('module'=>'user'),
-			Array('module'=>'user', 'params'=> Array('desc', '5')),
-			Array('module'=>'user', 'id'=>'1234', 'title'=>'bluetiger', 'params'=> Array('desc', 'contact')),
-			Array('module'=>'user', 'section'=>'edit', 'id'=>'200', 'title'=>'editieren'),
-			Array('module'=>'user', 'section'=>'edit'),
-			Array('module'=>'user', 'section'=>'edit', 'params'=> Array('desc', '5')),
-			Array('module'=>'forum', 'section'=>'board', 'id'=>'31', 'title'=>'allgemeiner support'),
-			Array('module'=>'forum', 'section'=>'topic', 'id'=>'1233', 'title'=>'ich brauche hilfe!'),
-			Array('module'=>'forum', 'section'=>'topic', 'id'=>'1234', 'title'=>'Dies ist der Topictitel! -#äö+ü', 'params'=> Array('desc', '5'))
-		);
+class UrlTest extends PHPUnit_Framework_TestCase {
 
-$output = Array();
-$input_original = Array();
+    /**
+     * @dataProvider testData
+     */
 
-foreach($input as $value) {
+    public function testAdd($input, $expectedUrl) {
 
-	array_push($input_original, Array('module'=>$value['module'], 'section'=>(isset($value['section']) ? $value['section'] : "default"), 'id'=>(isset($value['id']) ? $value['id'] : ""), 'params'=>(isset($value['params']) ? $value['params'] : Array())));
-	$c = new Url();
-	$url = $c->generateUrl($value);
-	echo $url."\n";
-	$_SERVER['QUERY_STRING'] = $url;
-	$c->parseQueryString();
-	array_push($output, Array('module'=>$c->getModule(), 'section'=>$c->getSection(), 'id'=>$c->getId(), 'params'=>$c->getModuleParams()));
-	unset($c);
+        // check url generation
+        $c = new Url();
+        $url = $c->generateUrl($input);
+
+        $this->assertEquals($url, $expectedUrl);
+
+        // check url parsing
+        $_SERVER['QUERY_STRING'] = substr($expectedUrl, 1);
+        $c->parseQueryString();
+
+        $inputParam = Array();
+        $outputParam = Array();
+        array_push($inputParam, Array('module'=>$input['module'], 'section'=>(isset($input['section']) ? $input['section'] : "default"), 'id'=>(isset($input['id']) ? $input['id'] : null), 'params'=>(isset($input['params']) ? $input['params'] : Array())));
+        array_push($outputParam, Array('module'=>$c->getModule(), 'section'=>$c->getSection(), 'id'=>$c->getId(), 'params'=>$c->getModuleParams()));
+
+        $this->assertEquals($inputParam, $outputParam);
+
+    }
+
+    public function testData() {
+
+        return array(
+            Array(Array('module'=>'user'), '/user.html'),
+            Array(Array('module'=>'user', 'params'=> Array('desc', '5')), '/user,desc,5.html'),
+            Array(Array('module'=>'user', 'id'=>'1234', 'title'=>'bluetiger', 'params'=> Array('desc', 'contact')), '/user/1234-bluetiger,desc,contact.html'),
+            Array(Array('module'=>'user', 'section'=>'edit', 'id'=>'200', 'title'=>'editieren'), '/user/edit/200-editieren.html'),
+            Array(Array('module'=>'user', 'section'=>'edit'), '/user/edit.html'),
+            Array(Array('module'=>'user', 'section'=>'edit', 'params'=> Array('desc', '5')), '/user/edit,desc,5.html'),
+            Array(Array('module'=>'forum', 'section'=>'board', 'id'=>'31', 'title'=>'allgemeiner support'), '/forum/board/31-allgemeiner_support.html'),
+            Array(Array('module'=>'forum', 'section'=>'topic', 'id'=>'1233', 'title'=>'ich brauche hilfe!'), '/forum/topic/1233-ich_brauche_hilfe.html'),
+            Array(Array('module'=>'forum', 'section'=>'topic', 'id'=>'1234', 'title'=>'Dies ist der Topictitel! -#äö+ü', 'params'=> Array('desc', '5')), '/forum/topic/1234-Dies_ist_der_Topictitel_aeoe_ue,desc,5.html')
+        );
+
+    }
 
 }
-
-$diff = arrayRecursiveDiff($input_original, $output);
-if(empty($diff))
-	echo "Test erfolgreich";
-else
-	echo "\nTest fehlgeschlagen:\n".print_r($diff, true);
 
 ?>
