@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<phpunit bootstrap="tests/bootstrap.php"
+<phpunit bootstrap="development/tests/autoloader.php"
          backupGlobals="false"
          backupStaticAttributes="false"
          strict="true"
@@ -8,7 +8,7 @@
        
   <testsuites>
     <testsuite name="Webspell">
-      <directory suffix=".php">development/tests/</directory>
+      <directory suffix="Test.php">development/tests/</directory>
     </testsuite>
   </testsuites>
 

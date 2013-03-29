@@ -1,6 +1,4 @@
 <?php
-include('./development/tests/autoloader.php');
-
 class RegistryTest extends PHPUnit_Framework_TestCase
 {
     public function setUp(){
