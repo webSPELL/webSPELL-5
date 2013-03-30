@@ -1,5 +1,6 @@
 <?php
-abstract class CaptchaInterface {
+namespace Captcha;
+abstract class Interface {
     private $mysqli;
     private $registry;
 

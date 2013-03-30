@@ -79,9 +79,9 @@ class Render {
         $contentmodule = $url->getModule();
         $modulepath = WEBSPELL_ROOT.DIRECTORY_SEPARATOR.'modules'.DIRECTORY_SEPARATOR.$contentmodule;
         if(is_dir($modulepath)) {
-            $modulename = "Module_".ucfirst($contentmodule);
+            $modulename = "Module".ucfirst($contentmodule);
             $module =  new $modulename();
-            $section = 'section_'.$url->getSection();
+            $section = 'section'.ucfirst($url->getSection());
             $this->addToRender('content', array($module, $section));           
         }  
         else {
@@ -91,10 +91,10 @@ class Render {
         $options = parse_ini_file($this->themepath.DIRECTORY_SEPARATOR.'options.ini', true);
         if(isset($options['boxes'])) {
             foreach($options['boxes'] as $key => $function) {
-                if(strpos($function, "Module_")!==false) {
+                if(strpos($function, "Module")!==false) {
                     $parts = explode("_", $function, 3);
-                    $modulename = "Module_".$parts[1];
-                    $function = $parts[2];
+                    $modulename = $parts[0];
+                    $function = $parts[1].ucfirst($parts[2]);
                     $this->addToRender($key, array(new $modulename(), $function));
                 }
             }

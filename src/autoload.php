@@ -5,10 +5,13 @@ class Autoload {
 	public static function addExternalPath($path){
 		set_include_path(get_include_path() . PATH_SEPARATOR . $path);
 	}
+	public static function fixPackageNames($s) {
+        return preg_replace('/(?<!^)([A-Z])([a-z])/', '_\\1\\2', $s);
+	}
 	public static function load($class){
 		$correctedName = str_replace(array("_","\\"), DIRECTORY_SEPARATOR, $class);
-		if(stristr($class, 'Module_')){
-			$modul = str_replace("Module_", "", $class);
+		if(stristr($class, 'Module') && strlen($class)>6){
+			$modul = str_replace("Module", "", $class);
 			$path = 'modules/'.$modul.'/index.php';
 		}
 		elseif(strstr($class, 'Mapper')){
@@ -17,8 +20,10 @@ class Autoload {
 		else{
 			$path = 'core/classes/'.$correctedName.'.php';
 		}
+
 		if(file_exists(WEBSPELL_ROOT.$path)){
-			include WEBSPELL_ROOT.$path;
+			require_once WEBSPELL_ROOT.$path;
+			return;
 		}
 		else{
 			foreach(explode(PATH_SEPARATOR,get_include_path()) as $path){

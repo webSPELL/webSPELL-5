@@ -1,5 +1,6 @@
 <?php
-class HttpRequestFOPEN extends HttpRequestInterface {
+namespace Http;
+class RequestFOPEN extends Http\RequestInterface {
     /**
      * @see HttpRequest_Core::init();
      */

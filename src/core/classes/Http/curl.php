@@ -1,5 +1,6 @@
 <?php
-class HttpRequestCURL extends HttpRequestInterface {
+namespace Http;
+class RequestCURL extends Http\RequestInterface {
     /**
      * @see HttpRequest_Core::init();
      */

@@ -1,8 +1,9 @@
 <?php
+namespace Pattern;
 /**
  * Singleton design pattern for extension
  */
-class PatternSingleton {
+class Singleton {
 
 private static $_instances = array();
     public static function getInstance() {

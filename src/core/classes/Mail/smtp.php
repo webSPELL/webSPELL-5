@@ -1,10 +1,11 @@
 <?php
+namespace Mail;
 /**
  *
  * @author Philipp
  *
  */
-class MailSmtp extends MailInterface {
+class Smtp extends Mail\Interface {
 
     /**
      * Holds the socket to the server

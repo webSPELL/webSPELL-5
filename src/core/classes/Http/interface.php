@@ -1,8 +1,9 @@
 <?php
+namespace Http;
 /**
  * Option Object for internal use
  */
-class HttpRequestOptions {
+class RequestOptions {
     /**
      * Host of the HTTP Request
      * @var string

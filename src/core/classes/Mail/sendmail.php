@@ -1,10 +1,11 @@
 <?php
+namespace Mail;
 /**
  *
  * @author Philipp
  *
  */
-class MailSendmail extends MailInterface {
+class Sendmail extends Mail\Interface {
 
     /**
      * Constructor Method

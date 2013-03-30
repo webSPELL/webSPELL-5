@@ -1,5 +1,6 @@
 <?php
-class CaptchaMath extends Captcha_Interface {
+namespace Captcha;
+class Math extends Captcha\Interface {
 
     public function __construct() {
         parent::__construct();

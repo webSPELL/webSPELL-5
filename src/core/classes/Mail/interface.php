@@ -1,5 +1,6 @@
 <?php
-abstract class MailInterface {
+namespace Mail;
+abstract class Interface {
 
     /**
      * Holds an array of all receivers

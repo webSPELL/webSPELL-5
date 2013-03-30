@@ -2,7 +2,7 @@
 /**
  * URL class for URL parsing and link generation
  */
-class Url extends Pattern_Singleton {
+class Url extends Pattern\Singleton {
 
 	private $registry;
 	private $modRewrite = false;
