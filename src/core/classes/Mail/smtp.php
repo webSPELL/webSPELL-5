@@ -5,7 +5,7 @@ namespace Mail;
  * @author Philipp
  *
  */
-class Smtp extends Mail\Interface {
+class Smtp extends Mail\Base {
 
     /**
      * Holds the socket to the server

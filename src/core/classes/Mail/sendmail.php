@@ -5,7 +5,7 @@ namespace Mail;
  * @author Philipp
  *
  */
-class Sendmail extends Mail\Interface {
+class Sendmail extends Mail\Base {
 
     /**
      * Constructor Method
