@@ -46,6 +46,19 @@ class UrlTest extends PHPUnit_Framework_TestCase {
 
     }
 
+    /**
+     * @expectedException WebspellException
+     */
+
+    public function testGenerateUrlIfModuleIsNotSetShouldThrowException() {
+
+        // check url generation
+        $c = new Url();
+        $url = $c->generateUrl(Array('id'=>'1234', 'title'=>'bluetiger', 'params'=> Array('desc', 'contact')));
+
+
+    }
+
 }
 
 ?>

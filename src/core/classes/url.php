@@ -31,7 +31,7 @@ class Url extends Pattern_Singleton {
     public function generateURL($urldata) {
     
     	if(!isset($urldata['module'])) {
-    		throw new CoreException('missing_module');
+    		throw new WebspellException('missing_module');
     	}
 
 		// check additional module parameters
