@@ -1,5 +1,5 @@
 <?php
-class Captcha_Default extends Captcha_Interface {
+class CaptchaDefault extends Captcha_Interface {
     /**
      * Background Color of the Captcha
      * @var array
