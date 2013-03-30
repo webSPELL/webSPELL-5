@@ -5,7 +5,9 @@ class Session {
 	 * starts session
 	 */
 	public function __construct(){
-		session_start();
+		if(!isset($_SESSION)){
+			session_start();
+		}
 	}
 	
 	public function setUserId($userId){
@@ -46,7 +48,7 @@ class Session {
 	 */
 	public function get($key){
 		if(empty($_SESSION[$key])){
-			return NULL;
+			return null;
 		}
 		return $_SESSION[$key];
 	}
