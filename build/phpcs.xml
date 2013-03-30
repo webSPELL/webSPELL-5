@@ -38,4 +38,5 @@
 			<property name="strict" value="false"/>
 		</properties>
 	</rule>
+	<exclude-pattern>*/src/core/lib/*</exclude-pattern>
 </ruleset>
