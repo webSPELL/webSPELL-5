@@ -1,6 +1,6 @@
 <?php
 namespace Captcha;
-class Standard extends Captcha\Interface {
+class Standard extends Captcha\Base {
     /**
      * Background Color of the Captcha
      * @var array

@@ -1,6 +1,6 @@
 <?php
 namespace Captcha;
-class ReCaptcha extends Captcha\Interface {
+class ReCaptcha extends Captcha\Base {
     /**
      * Api Key from Recaptcha
      * http://recaptcha.net/api/getkey
