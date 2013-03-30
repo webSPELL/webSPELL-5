@@ -2,7 +2,7 @@
 /**
  * Option Object for internal use
  */
-class HttpRequest_Options{
+class HttpRequestOptions {
     /**
      * Host of the HTTP Request
      * @var string
@@ -45,10 +45,11 @@ class HttpRequest_Options{
      */
     public $headers = array();
 }
-abstract class HttpRequest_Interface{
+
+abstract class HttpRequestInterface {
     /**
      * The Options of the connection
-     * @var HttpRequest_Options
+     * @var HttpRequestOptions
      */
     protected $options = null;
 
@@ -60,7 +61,7 @@ abstract class HttpRequest_Interface{
     /**
      * Class constructor method
      */
-    public function __construct(){
+    public function __construct() {
     }
     /**
      * Static method to make a string from
@@ -69,12 +70,12 @@ abstract class HttpRequest_Interface{
      * @static
      * @return string
      */
-    static function makePostData($array){
+    static function makePostData($array) {
         $string = '';
-        foreach($array as $key => $value){
+        foreach($array as $key => $value) {
             $string .= $key."=".urlencode($value)."&";
         }
-        return mb_substr($string,0,-1);
+        return mb_substr($string, 0, -1);
     }
     /**
      * Set host and port of the connection
@@ -82,7 +83,7 @@ abstract class HttpRequest_Interface{
      * @param int $port [optional]
      * @return
      */
-    public function setHost($host, $port = 80){
+    public function setHost($host, $port = 80) {
         $this->options->host = $host;
         $this->options->port = $port;
     }
@@ -91,7 +92,7 @@ abstract class HttpRequest_Interface{
      * @param string $path
      * @return
      */
-    public function setPath($path){
+    public function setPath($path) {
         $this->options->path = $path;
     }
     /**
@@ -99,8 +100,8 @@ abstract class HttpRequest_Interface{
      * @param array/string $data
      * @return
      */
-    public function setData($data){
-        if(is_array($data)){
+    public function setData($data) {
+        if(is_array($data)) {
             $data = HttpRequest::makePostData($data);
         }
         $this->options->data = $data;
@@ -110,7 +111,7 @@ abstract class HttpRequest_Interface{
      * @param string $string
      * @return
      */
-    public function setUserAgent($string){
+    public function setUserAgent($string) {
         $this->options->useragent= $string;
     }
     /**
@@ -119,7 +120,7 @@ abstract class HttpRequest_Interface{
      * @param int $int
      * @return
      */
-    public function setTimeout($int){
+    public function setTimeout($int) {
         $this->options->timeout = $int;
     }
     /**
@@ -128,8 +129,8 @@ abstract class HttpRequest_Interface{
      * @param string $proto
      * @return
      */
-    public function setProtocol($proto){
-        if(in_array($proto,array("http","https"))){
+    public function setProtocol($proto) {
+        if(in_array($proto, array("http", "https"))) {
             $this->options->protocol = $proto;
         }
     }
@@ -138,7 +139,7 @@ abstract class HttpRequest_Interface{
      * @param string $header
      * @return
      */
-    public function addHeader($header){
+    public function addHeader($header) {
         $this->options->headers[] = $header;
     }
     /**
