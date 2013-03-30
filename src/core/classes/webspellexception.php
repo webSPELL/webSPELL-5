@@ -41,7 +41,6 @@ class WebspellException extends Exception {
 
 			if(isset($trace['function'], $trace['class']))
                 $logString .= "+ Function: ".$trace['class'].$trace['type'].$trace['function']." (".$this->varExport($trace['args'], true).")\n";
-
 			else
                 $logString .= "+ Function: ".$trace['function']." (".$this->varExport($trace['args'], true).")\n";
 
