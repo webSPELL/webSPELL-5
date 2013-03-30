@@ -1,21 +1,29 @@
 <?php
 class UrlTest extends PHPUnit_Framework_TestCase {
 
-
-    public function setUp(){
-        Registry::getInstance()->set('modRewrite',true);
-    }
     /**
      * @dataProvider data
      */
 
     public function testUrlGeneration($input, $expectedUrl) {
 
+        Registry::getInstance()->set('modRewrite',true);
+
         // check url generation
         $c = new Url();
         $url = $c->generateUrl($input);
 
         $this->assertEquals($url, $expectedUrl);
+
+        Registry::getInstance()->set('modRewrite',false);
+
+        // check url generation without modrewrite
+        $c = new Url();
+        $url = $c->generateUrl($input);
+
+        $this->assertEquals($url, preg_replace("(\/)", "/?", $expectedUrl, 1));
+
+        Registry::getInstance()->set('modRewrite',true);
 
         // check url parsing
         $_SERVER['QUERY_STRING'] = substr($expectedUrl, 1);
