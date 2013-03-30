@@ -9,7 +9,7 @@ class UrlTest extends PHPUnit_Framework_TestCase {
      * @dataProvider data
      */
 
-    public function testAdd($input, $expectedUrl) {
+    public function testUrlGeneration($input, $expectedUrl) {
 
         // check url generation
         $c = new Url();
@@ -34,6 +34,7 @@ class UrlTest extends PHPUnit_Framework_TestCase {
 
         return array(
             Array(Array('module'=>'user'), '/user.html'),
+            Array(Array('module'=>'user'), '/user.html'),
             Array(Array('module'=>'user', 'params'=> Array('desc', '5')), '/user,desc,5.html'),
             Array(Array('module'=>'user', 'id'=>'1234', 'title'=>'bluetiger', 'params'=> Array('desc', 'contact')), '/user/1234-bluetiger,desc,contact.html'),
             Array(Array('module'=>'user', 'section'=>'edit', 'id'=>'200', 'title'=>'editieren'), '/user/edit/200-editieren.html'),
@@ -43,6 +44,13 @@ class UrlTest extends PHPUnit_Framework_TestCase {
             Array(Array('module'=>'forum', 'section'=>'topic', 'id'=>'1233', 'title'=>'ich brauche hilfe!'), '/forum/topic/1233-ich_brauche_hilfe.html'),
             Array(Array('module'=>'forum', 'section'=>'topic', 'id'=>'1234', 'title'=>'Dies ist der Topictitel! -#äö+ü', 'params'=> Array('desc', '5')), '/forum/topic/1234-Dies_ist_der_Topictitel_aeoe_ue,desc,5.html')
         );
+
+    }
+
+    public function testEmptyUrlClass() {
+
+        $c = new Url();
+        $this->assertEquals('news', $c->getModule());
 
     }
 
