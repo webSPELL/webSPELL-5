@@ -61,11 +61,11 @@ class Image {
                 return true;
             }
             else {
-                throw new Exception("IMAGE ERROR: Watermark needs to be png of gif");
+                throw new WebspellException("IMAGE ERROR: Watermark needs to be png of gif");
             }
         }
         else {
-            throw new Exception("IMAGE ERROR: Watermark image doesn't exist");
+            throw new WebspellException("IMAGE ERROR: Watermark image doesn't exist");
         }
     }
 
@@ -77,7 +77,7 @@ class Image {
                 $this->waterMarkPosition[0] = $vPos;
             }
             else {
-                throw new Exception("IMAGE ERROR: Watermark position needs to be ".implode(" or ", $vPos_a));
+                throw new WebspellException("IMAGE ERROR: Watermark position needs to be ".implode(" or ", $vPos_a));
             }
         }
         if($hPos) {
@@ -87,7 +87,7 @@ class Image {
                 $this->waterMarkPosition[1] = $hPos;
             }
             else {
-                throw new Exception("IMAGE ERROR: Watermark position needs to be ".implode(" or ", $hPos_a));
+                throw new WebspellException("IMAGE ERROR: Watermark position needs to be ".implode(" or ", $hPos_a));
             }
         }
     }
@@ -128,8 +128,9 @@ class Image {
      * @return array
      */
     private function imageData(){
-        if($this->imageData == null)
+        if($this->imageData == null) {
             $this->imageData = getimagesize($this->image);
+        }
         return $this->imageData;
     }
 
@@ -157,8 +158,9 @@ class Image {
                         return false;
                 }
             }
-            else
+            else {
                 return false;
+            }
         }
     }
 
@@ -198,11 +200,12 @@ class Image {
                     return imagecreatefrompng($this->image);
                     break;
                 default:
-                    throw new Exception("IMAGE ERROR: No supported image Type");
+                    throw new WebspellException("IMAGE ERROR: No supported image Type");
             }
         }
-        else
-            throw new Exception("IMAGE ERROR: No image");
+        else {
+            throw new WebspellException("IMAGE ERROR: No image");
+        }
     }
 
     /**

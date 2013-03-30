@@ -18,7 +18,7 @@ class ClassConflict {
      */
     public function __construct() {
         $core_classes = FileSystem::getDirectory('./core/classes/', array(".svn"));
-        $modules = FileSystem::getDirectory('./modules/',array(".svn", "templates", "languages"));
+        $modules = FileSystem::getDirectory('./modules/', array(".svn", "templates", "languages"));
         $paths = array_merge($core_classes, $modules);
         foreach ($paths as $path) {
             if(is_dir($path)) {

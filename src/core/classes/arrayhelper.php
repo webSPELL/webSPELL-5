@@ -1,6 +1,6 @@
 <?php
-class ArrayHelper{
-	static function is_assoc($array) {
+class ArrayHelper {
+	static function isAssoc($array) {
 		if(empty($array)){
 			return true;
 		}
