@@ -59,16 +59,18 @@ class Session {
 	 */
 	public function destroy($id = 0){
 		if(empty($id)){
-			throw new WebspellException("Parameter 'id' holds an invalid value.");
+			session_destroy();
 		}
-		//backup own session
-		$tempSession = session_id();
-		//change session to given session
-		session_id($id);
-		//delete session
-		session_destroy();
-		//return to own session
-		session_name($tempSession);
+		else {
+			//backup own session
+			$tempSession = session_id();
+			//change session to given session
+			session_id($id);
+			//delete session
+			session_destroy();
+			//return to own session
+			session_id($tempSession);
+		}
 	}
 	
 }
