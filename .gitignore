@@ -1,3 +1,7 @@
 
 /.project
 /.buildpath
+/build/code-browser/*
+/build/coverage/*
+/build/logs/*
+/build/pdepend/*

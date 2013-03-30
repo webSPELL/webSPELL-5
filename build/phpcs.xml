@@ -20,17 +20,9 @@
 	<rule ref="Generic.NamingConventions.UpperCaseConstantName"/>
 	<rule ref="Generic.PHP.DeprecatedFunctions"/>
 	<rule ref="Generic.PHP.DisallowShortOpenTag"/>
-	<rule ref="Generic.PHP.LowerCaseKeyword"/>
+	<!--<rule ref="Generic.PHP.LowerCaseKeyword"/>-->
 	<rule ref="Generic.PHP.LowerCaseConstant"/>
 	<rule ref="Generic.Strings.UnnecessaryStringConcat"/>
-
-	<!-- Lines can be 85 chars long, but never show errors -->
-	<rule ref="Generic.Files.LineLength">
-		<properties>
-			<property name="lineLimit" value="85"/>
-			<property name="absoluteLineLimit" value="0"/>
-		</properties>
-	</rule>
 
 	<!-- Use Unix newlines -->
 	<rule ref="Generic.Files.LineEndings">
