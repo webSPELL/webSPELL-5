@@ -57,8 +57,6 @@
   <exec executable="phploc">
    <arg value="--log-csv" />
    <arg value="${basedir}/build/logs/phploc.csv" />
-   <arg value="--exclude" />
-   <arg value="${basedir}/src/core/lib/" />
    <arg path="${basedir}/src/" />
   </exec>
  </target>
@@ -79,8 +77,6 @@
    <arg path="${basedir}/src/" />
    <arg value="text" />
    <arg value="${basedir}/build/phpmd.xml" />
-   <arg value="--exclude" />
-   <arg value="${basedir}/src/core/lib/" />
   </exec>
  </target>
 
@@ -91,8 +87,6 @@
    <arg value="${basedir}/build/phpmd.xml" />
    <arg value="--reportfile" />
    <arg value="${basedir}/build/logs/pmd.xml" />
-   <arg value="--exclude" />
-   <arg value="${basedir}/src/core/lib/" />
   </exec>
  </target>
 
