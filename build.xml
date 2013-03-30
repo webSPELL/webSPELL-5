@@ -58,6 +58,8 @@
    <arg value="--log-csv" />
    <arg value="${basedir}/build/logs/phploc.csv" />
    <arg path="${basedir}/src/" />
+   <arg value="--exclude" />
+   <arg value="${basedir}/src/core/lib/" />
   </exec>
  </target>
 
@@ -66,6 +68,7 @@
    <arg value="--jdepend-xml=${basedir}/build/logs/jdepend.xml" />
    <arg value="--jdepend-chart=${basedir}/build/pdepend/dependencies.svg" />
    <arg value="--overview-pyramid=${basedir}/build/pdepend/overview-pyramid.svg" />
+   <arg value="--ignore=${basedir}/src/core/lib/" />
    <arg path="${basedir}/src/" />
   </exec>
  </target>
@@ -76,6 +79,8 @@
    <arg path="${basedir}/src/" />
    <arg value="text" />
    <arg value="${basedir}/build/phpmd.xml" />
+   <arg value="--exclude" />
+   <arg value="${basedir}/src/core/lib/" />
   </exec>
  </target>
 
@@ -86,6 +91,8 @@
    <arg value="${basedir}/build/phpmd.xml" />
    <arg value="--reportfile" />
    <arg value="${basedir}/build/logs/pmd.xml" />
+   <arg value="--exclude" />
+   <arg value="${basedir}/src/core/lib/" />
   </exec>
  </target>
 
@@ -110,6 +117,8 @@
   <exec executable="phpcpd">
    <arg value="--log-pmd" />
    <arg value="${basedir}/build/logs/pmd-cpd.xml" />
+   <arg value="--exclude" />
+   <arg value="${basedir}/src/core/lib/" />
    <arg path="${basedir}/src/" />
   </exec>
  </target>
