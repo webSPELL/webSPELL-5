@@ -4,16 +4,20 @@
  * @author Philipp
  *
  */
-class Mail_Sendmail extends Mail_Interface {
+class MailSendmail extends MailInterface {
 
     /**
      * Constructor Method
      * @param array $params
      */
     public function __construct($params) {
-        if (!defined("CRLF"))define("CRLF", "\r\n");
+        if (!defined("CRLF")) {
+            define("CRLF", "\r\n");
+        }
         foreach ($params as $key => $value) {
-            if ( isset($this->$key)) $this->$key = $value;
+            if (isset($this->$key)) {
+                $this->$key = $value;
+            }
         }
     }
 

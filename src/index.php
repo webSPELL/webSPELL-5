@@ -1,11 +1,10 @@
-<?php 
-
+<?php
 error_reporting(E_ALL);
 $GLOBALS['starttime'] = microtime(true);
-define("WEBSPELL_ROOT",__DIR__.DIRECTORY_SEPARATOR);
+define("WEBSPELL_ROOT", __DIR__.DIRECTORY_SEPARATOR);
 
 include(WEBSPELL_ROOT."autoload.php");
-spl_autoload_register(array("Autoload","load"));
+spl_autoload_register(array("Autoload", "load"));
 Autoload::addExternalPath(WEBSPELL_ROOT."core/lib");
 
 try {

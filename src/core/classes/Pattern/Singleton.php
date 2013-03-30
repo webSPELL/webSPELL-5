@@ -2,7 +2,7 @@
 /**
  * Singleton design pattern for extension
  */
-class Pattern_Singleton {
+class PatternSingleton {
 
 private static $_instances = array();
     public static function getInstance() {

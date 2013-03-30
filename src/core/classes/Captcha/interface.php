@@ -1,5 +1,5 @@
 <?php
-abstract class Captcha_Interface {
+abstract class CaptchaInterface {
     private $mysqli;
     private $registry;
 

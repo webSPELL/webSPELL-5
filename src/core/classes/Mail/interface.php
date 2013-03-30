@@ -1,5 +1,5 @@
 <?php
-abstract class Mail_Interface {
+abstract class MailInterface {
 
     /**
      * Holds an array of all receivers
@@ -58,7 +58,9 @@ abstract class Mail_Interface {
     public function addReceivers($array) {
         if (is_array($array)) {
             foreach ($array as $user) {
-                if (!$this->addReceiver($user[0])) return false;
+                if (!$this->addReceiver($user[0])) {
+                    return false;
+                }
             }
             return true;
         }

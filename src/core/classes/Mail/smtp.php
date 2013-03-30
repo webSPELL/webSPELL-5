@@ -4,7 +4,7 @@
  * @author Philipp
  *
  */
-class Mail_Smtp extends Mail_Interface {
+class MailSmtp extends MailInterface {
 
     /**
      * Holds the socket to the server
@@ -58,15 +58,21 @@ class Mail_Smtp extends Mail_Interface {
      * @param array $params
      */
     public function __construct($params) {
-        if (!defined("CRLF"))define("CRLF", "\r\n");
-        $configs = $this->mysqli->queryResults("SELECT `value`, `field` FROM ".DB_PREFIX."system_vars WHERE `field` LIKE 'mail.smtp.%'");
-        foreach($configs as $config){
-            $key = str_replace("mail.smtp.",'',$config['field']);
-            $value = $config['value'];
-            if ( isset($this->$key)) $this->$key = $value;
+        if(!defined("CRLF")) {
+            define("CRLF", "\r\n");
         }
-        foreach ($params as $key => $value) {
-            if ( isset($this->$key)) $this->$key = $value;
+        $configs = $this->mysqli->queryResults("SELECT `value`, `field` FROM ".DB_PREFIX."system_vars WHERE `field` LIKE 'mail.smtp.%'");
+        foreach($configs as $config) {
+            $key = str_replace("mail.smtp.", '', $config['field']);
+            $value = $config['value'];
+            if(isset($this->$key)) {
+                $this->$key = $value;
+            }
+        }
+        foreach($params as $key => $value) {
+            if(isset($this->$key)) {
+                $this->$key = $value;
+            }
         }
     }
 

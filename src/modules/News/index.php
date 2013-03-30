@@ -1,21 +1,25 @@
 <?php
-class Module_News extends Module{
+class ModuleNews extends Module {
+
 	private $box = false;
 	private $http = true;
-	public function __construct(){
+
+	public function __construct() {
         $this->templateEngine = Registry::getInstance()->get('template_modul');
     }
-	public function section_default($params = array()){
+
+	public function sectionDefault($params = array()) {
 	    Render::addStylesheet('css/myfile.css');
         $url = URl::getInstance();
-        $parameters = array('module'=>'News','section'=>'details');
+        $parameters = array('module'=>'News', 'section'=>'details');
         $href = $url->generateURL($parameters);
         $values = array('link'=>$href);
-        return $this->templateEngine->returnTemplate('News','default','block',$values);
+        return $this->templateEngine->returnTemplate('News', 'default', 'block', $values);
 	}
 	
-	public function section_details($params = array()){
-		 return $this->templateEngine->returnTemplate('News','default','details');
+	public function sectionDetails($params = array()) {
+		 return $this->templateEngine->returnTemplate('News', 'default', 'details');
 	}
-	
+
 }
+?>

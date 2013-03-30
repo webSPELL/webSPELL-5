@@ -1,5 +1,4 @@
 <?php
-
 class WebspellException extends Exception {
 	
 	private $registry;

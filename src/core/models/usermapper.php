@@ -1,6 +1,6 @@
 <?php
-class userMapper extends \Spot\Entity
-{
+class UserMapper extends \Spot\Entity {
+
     protected static $_datasource = 'users';
 
     public static function fields() {
@@ -39,5 +39,4 @@ class userMapper extends \Spot\Entity
         );
     }
 }
-
 ?>
