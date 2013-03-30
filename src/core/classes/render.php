@@ -92,7 +92,7 @@ class Render {
         if(isset($options['boxes'])) {
             foreach($options['boxes'] as $key => $function) {
                 if(strpos($function, "Module_")!==false) {
-                    $parts = explode("_", $function,3);
+                    $parts = explode("_", $function, 3);
                     $modulename = "Module_".$parts[1];
                     $function = $parts[2];
                     $this->addToRender($key, array(new $modulename(), $function));

@@ -29,7 +29,7 @@ class FileSystem {
             return false;
         }
         if(is_dir($path) && !is_link($path)) {
-            $path = self::Folder($path);
+            $path = self::folder($path);
             $dir = dir($path);
             while(false !== ($entry = $dir->read())) {
                 if($entry == "." || $entry == ".." ) {
@@ -50,7 +50,7 @@ class FileSystem {
      * @return string
      * @param string $path
      */
-    public static function Folder($path) {
+    public static function folder($path) {
         $end = substr($path, -1, 1);
         if($end != "/" && $end != "\\") {
             $path .= "/";
@@ -65,9 +65,11 @@ class FileSystem {
      * @param boolean $format Get the result formated
      */
     public static function getDirectorySize($path, $format = false) {
-        if(trim($path) == "") return false;
+        if(trim($path) == "") {
+            return false;
+        }
         $size = 0;
-        $path = self::Folder($path);
+        $path = self::folder($path);
         if(is_dir($path)) {
             $dir = dir($path);
             while(false !== ($entry = $dir->read())) {
@@ -83,10 +85,12 @@ class FileSystem {
             }
         }
 
-        if($format == true)
+        if($format == true) {
             return self::formatFileSize($size);
-        else
+        }
+        else {
             return $size;
+        }
     }
 
     /**
@@ -96,20 +100,21 @@ class FileSystem {
      * @return array
      */
     public static function getDirectory($path, $exclude=array()) {
-        if(trim($path) == "")
+        if(trim($path) == "") {
             return false;
-        $path = self::Folder($path);
+        }
+        $path = self::folder($path);
         $data = array();
         if(is_dir($path)) {
             $dir = dir($path);
             while(false !== ($entry=$dir->read())) {
-                if($entry == "."||$entry == "..") {
+                if($entry == "." || $entry == "..") {
                     continue;
                 }
                 if(!in_array($entry, $exclude)) {
                     if(is_dir($path.$entry)) {
                         $data[] = $path.$entry;
-                        $data = array_merge($data,self::getDirectory($path.$entry, $exclude));
+                        $data = array_merge($data, self::getDirectory($path.$entry, $exclude));
                     }
                     else {
                         $data[] = $path.$entry;

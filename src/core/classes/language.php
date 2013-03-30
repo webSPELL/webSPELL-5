@@ -219,7 +219,9 @@ class Language {
         }
         $invalide = array('\\', '/', '/\/', ':', '.');
         $modulename = str_replace($invalide, '', $modulename);
-        if(!isset($this->translations[$modulename])) $this->loadTranslation($modulename);
+        if(!isset($this->translations[$modulename])) {
+            $this->loadTranslation($modulename);
+        }
         	
         $search = $replace = array();
         foreach($this->translations[$modulename] AS $keyword => $translation) {
