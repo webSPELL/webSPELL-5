@@ -1,4 +1,5 @@
 <?php
+ob_start();
 //TODO: find way to integrate libs
 foreach (glob("src/core/lib/Spot/*.php") as $filename)
 {
