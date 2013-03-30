@@ -26,22 +26,26 @@ class WebspellException extends Exception {
 		$debugLevel = $this->registry->get('debugLevel');
 		$pathToLogFile = $this->registry->get('pathToLogFile');
 
-		$logString = "WebspellException:\n".
-		"Message: ".$this->getMessage()."\n".
-		"Error Code: ".$this->getCode()."\n".
-		"File: ".$this->getFile()."\n".
-		"Line: ".$this->getLine()."\n".
-		"Backtrace: \n";
+		$logString = "WebspellException:".
+		"\nMessage: ".$this->getMessage().
+		"\nError Code: ".$this->getCode().
+		"\nFile: ".$this->getFile().
+		"\nLine: ".$this->getLine().
+		"\nBacktrace:\n";
 		foreach($this->getTrace() as $trace) {
-			if(isset($trace['file'])) $logString .= "+ File: ".$trace['file']."\n";
-			if(isset($trace['line'])) $logString .= "+ Line: ".$trace['line']."\n";
-			if(isset($trace['function'], $trace['class'])) $logString .= "+ Function: ".$trace['class'].$trace['type'].$trace['function']." (".var_export($trace['args'], TRUE).")\n";
-			else $logString .= "+ Function: ".$trace['function']." (".$this->my_var_export($trace['args'], TRUE).")\n";
+			if(isset($trace['file']))
+                $logString .= "+ File: ".$trace['file']."\n";
+			if(isset($trace['line']))
+                $logString .= "+ Line: ".$trace['line']."\n";
+			if(isset($trace['function'], $trace['class']))
+                $logString .= "+ Function: ".$trace['class'].$trace['type'].$trace['function']." (".var_export($trace['args'], TRUE).")\n";
+			else
+                $logString .= "+ Function: ".$trace['function']." (".$this->varExport($trace['args'], TRUE).")\n";
 			$logString .= "\n\n";
 		}
 		
 		// 0 = no details, 1 = only logged, 2 = only on website, 3 = website + logfile
-		if($debugLevel === 0){
+		if($debugLevel === 0) {
 			return $this->getMessage();
 		} else {
 			if($debugLevel === 1 || $debugLevel === 3) {
@@ -53,7 +57,7 @@ class WebspellException extends Exception {
 		}
 	}
 	
-	private function my_var_export($var, $is_str=false)
+	private function varExport($var, $is_str=false)
 	{
 		$rtn=preg_replace(array('/Array\s+\(/', '/\[(\d+)\] => (.*)\n/', '/\[([^\d].*)\] => (.*)\n/'), array('array (', '\1 => \'\2\''."\n", '\'\1\' => \'\2\''."\n"), substr(print_r($var, true), 0, -1));
 		$rtn=strtr($rtn, array("=> 'array ('"=>'=> array ('));

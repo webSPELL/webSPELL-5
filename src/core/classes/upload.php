@@ -10,7 +10,7 @@ class Upload {
 		$this->options = array_merge($this->options, $options);
 		$this->files = array();
 		if(!is_dir($this->options['upload_path'])){
-			throw new Exception('UPLOAD',2);
+			throw new Exception('UPLOAD', 2);
 		}
 	}	
 	
@@ -45,7 +45,7 @@ class Upload {
 			return count($this->files[$name]);
 		}
 		else{
-			throw new Exception("UPLOAD",1);
+			throw new Exception("UPLOAD", 1);
 		}
 	}
 
@@ -56,7 +56,7 @@ class Upload {
 	 */
 	public function getFiles($name){
 		if(!isset($this->files[$name])){
-			throw new Exception('UPLOAD',1);
+			throw new Exception('UPLOAD', 1);
 		}
 		
 		$names = array();
@@ -74,11 +74,11 @@ class Upload {
 	 */
 	public function moveFiles($name, $filenames = array()){
 		if(!isset($this->files[$name])){
-			throw new Exception('UPLOAD',1);
+			throw new Exception('UPLOAD', 1);
 		}
 		
 		if(count($this->files[$name]) != count($filenames)){
-			throw new Exception('UPLOAD',4);
+			throw new Exception('UPLOAD', 4);
 		}
 		
 		$errors = array();

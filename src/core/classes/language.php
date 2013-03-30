@@ -133,10 +133,14 @@ class Language {
             throw new WebspellException("Language Error: Invalid language type specified.", 2);
         }
         	
-        if(file_exists($this->language_path.$this->language.'/'.$modulename.'.php')) $languagefile = $this->language_path.$this->language.'/'.$modulename.'.php';
-        elseif(file_exists($this->language_path.$this->default_language.'/'.$modulename.'.php')) $languagefile = $this->language_path.$this->default_language.'/'.$modulename.'.php';
-        elseif(file_exists($this->language_path.$this->fallback_language.'/'.$modulename.'.php')) $languagefile = $this->language_path.$this->fallback_language.'/'.$modulename.'.php';
-        else throw new WebspellException("Language Error: Language file neither available in selected, nor in default nor in english language.", 3);
+        if(file_exists($this->language_path.$this->language.'/'.$modulename.'.php'))
+            $languagefile = $this->language_path.$this->language.'/'.$modulename.'.php';
+        elseif(file_exists($this->language_path.$this->default_language.'/'.$modulename.'.php'))
+            $languagefile = $this->language_path.$this->default_language.'/'.$modulename.'.php';
+        elseif(file_exists($this->language_path.$this->fallback_language.'/'.$modulename.'.php'))
+            $languagefile = $this->language_path.$this->fallback_language.'/'.$modulename.'.php';
+        else
+            throw new WebspellException("Language Error: Language file neither available in selected, nor in default nor in english language.", 3);
         	
         require($languagefile);
         	

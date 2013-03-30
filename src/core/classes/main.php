@@ -4,13 +4,13 @@ class Main {
 		
 		// Load everything
 		$registry = Registry::getInstance();
-		$registry->set('pathToLogFile','./log.txt');
-		$registry->set('theme','default');
-		$registry->set('modRewrite',true);
-		$registry->set('session',new Session());
+		$registry->set('pathToLogFile', './log.txt');
+		$registry->set('theme', 'default');
+		$registry->set('modRewrite', true);
+		$registry->set('session', new Session());
 		$registry->set('url', new Url());
 		$registry->get('url')->parseQueryString();
-        $registry->set('template_modul',new Template('mod'));
+        $registry->set('template_modul', new Template('mod'));
         
         // load config file
         include('config.php');
