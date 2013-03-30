@@ -1,13 +1,49 @@
 <?xml version="1.0"?>
 <ruleset name="PHP_CodeSniffer">
- <description>The coding standard for PHP_CodeSniffer.</description>
+	<description>The coding standard for PHP_CodeSniffer.</description>
 
- <!-- Include the whole PEAR standard -->
- <rule ref="PEAR"/>
+	<!-- Include the whole PEAR standard -->
+	<!-- <rule ref="PEAR"/>-->
 
- <!-- Include most of the Squiz standard -->
- <rule ref="Squiz"/>
+	<!-- Include most of the Squiz standard -->
+	<!-- <rule ref="Squiz"/>-->
 
- <rule ref="Generic"/>
+	<!-- <rule ref="Generic"/>-->
 
+	<rule ref="Generic.CodeAnalysis.UnusedFunctionParameter"/>
+	<rule ref="Generic.Commenting.Todo"/>
+	<rule ref="Generic.ControlStructures.InlineControlStructure"/>
+	<rule ref="Generic.Formatting.DisallowMultipleStatements"/>
+	<rule ref="Generic.Formatting.SpaceAfterCast"/>
+	<rule ref="Generic.Functions.FunctionCallArgumentSpacing"/>
+	<rule ref="Generic.NamingConventions.ConstructorName"/>
+	<rule ref="Generic.NamingConventions.UpperCaseConstantName"/>
+	<rule ref="Generic.PHP.DeprecatedFunctions"/>
+	<rule ref="Generic.PHP.DisallowShortOpenTag"/>
+	<rule ref="Generic.PHP.LowerCaseKeyword"/>
+	<rule ref="Generic.PHP.LowerCaseConstant"/>
+	<rule ref="Generic.Strings.UnnecessaryStringConcat"/>
+
+	<!-- Lines can be 85 chars long, but never show errors -->
+	<rule ref="Generic.Files.LineLength">
+		<properties>
+			<property name="lineLimit" value="85"/>
+			<property name="absoluteLineLimit" value="0"/>
+		</properties>
+	</rule>
+
+	<!-- Use Unix newlines -->
+	<rule ref="Generic.Files.LineEndings">
+		<properties>
+			<property name="eolChar" value="\n"/>
+		</properties>
+	</rule>
+	<!-- No BOM -->
+	<rule ref="Generic.Files.ByteOrderMark"/>
+	<rule ref="Squiz.Classes.ValidClassName"/>
+	<rule ref="Generic.NamingConventions.CamelCapsFunctionName">
+		<properties>
+			<property name="strict" value="false"/>
+		</properties>
+	</rule>
 </ruleset>
