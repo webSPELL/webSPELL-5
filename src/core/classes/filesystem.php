@@ -25,15 +25,19 @@ class FileSystem {
      * @param string $path Path to the folder
      */
     public static function removeDirRecursive($path) {
-        if(trim($path) == "") return false;
+        if(trim($path) == "") {
+            return false;
+        }
         if(is_dir($path) && !is_link($path)) {
             $path = self::Folder($path);
             $dir = dir($path);
             while(false !== ($entry = $dir->read())) {
-                if($entry == "." || $entry == ".." )
+                if($entry == "." || $entry == ".." ) {
                     continue;
-                if(!self::removeDirRecursive($path.$entry))
+                }
+                if(!self::removeDirRecursive($path.$entry)) {
                     return false;
+                }
             }
             $dir->close();
             return @rmdir($path);
@@ -48,8 +52,9 @@ class FileSystem {
      */
     public static function Folder($path) {
         $end = substr($path, -1, 1);
-        if($end != "/" && $end != "\\")
+        if($end != "/" && $end != "\\") {
             $path .= "/";
+        }
         return $path;
     }
 
@@ -66,12 +71,15 @@ class FileSystem {
         if(is_dir($path)) {
             $dir = dir($path);
             while(false !== ($entry = $dir->read())) {
-                if($entry == "." || $entry == ".." )
+                if($entry == "." || $entry == ".." ) {
                     continue;
-                if(is_dir($path.$entry))
+                }
+                if(is_dir($path.$entry)) {
                     $size += self::getDirectorySize($path.$entry, false);
-                else
+                }
+                else {
                     $size += filesize($path.$entry);
+                }
             }
         }
 
@@ -95,15 +103,17 @@ class FileSystem {
         if(is_dir($path)) {
             $dir = dir($path);
             while(false !== ($entry=$dir->read())) {
-                if($entry == "."||$entry == "..")
+                if($entry == "."||$entry == "..") {
                     continue;
+                }
                 if(!in_array($entry, $exclude)) {
                     if(is_dir($path.$entry)) {
                         $data[] = $path.$entry;
                         $data = array_merge($data,self::getDirectory($path.$entry, $exclude));
                     }
-                    else
+                    else {
                         $data[] = $path.$entry;
+                    }
                 }
             }
         }

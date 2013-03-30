@@ -33,16 +33,18 @@ class WebspellException extends Exception {
 		"\nBacktrace:\n";
 		foreach($this->getTrace() as $trace) {
 
-			if(isset($trace['file']))
+			if(isset($trace['file'])) {
                 $logString .= "+ File: ".$trace['file']."\n";
-
-			if(isset($trace['line']))
+            }
+			if(isset($trace['line'])) {
                 $logString .= "+ Line: ".$trace['line']."\n";
-
-			if(isset($trace['function'], $trace['class']))
+            }
+			if(isset($trace['function'], $trace['class'])) {
                 $logString .= "+ Function: ".$trace['class'].$trace['type'].$trace['function']." (".$this->varExport($trace['args'], true).")\n";
-			else
+            }
+			else {
                 $logString .= "+ Function: ".$trace['function']." (".$this->varExport($trace['args'], true).")\n";
+            }
 
 			$logString .= "\n\n";
 

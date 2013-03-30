@@ -60,29 +60,35 @@ class Image {
                 $this->watermarkImage = $img;
                 return true;
             }
-            else
+            else {
                 throw new Exception("IMAGE ERROR: Watermark needs to be png of gif");
+            }
         }
-        else
+        else {
             throw new Exception("IMAGE ERROR: Watermark image doesn't exist");
+        }
     }
 
     public function setWaterMarkPosition($vPos, $hPos){
         if($vPos) {
             $vPos = strtolower($vPos);
             $vPos_a = array("top", "middle", "bottom");
-            if(in_array($vPos, $vPos_a))
+            if(in_array($vPos, $vPos_a)) {
                 $this->waterMarkPosition[0] = $vPos;
-            else
+            }
+            else {
                 throw new Exception("IMAGE ERROR: Watermark position needs to be ".implode(" or ", $vPos_a));
+            }
         }
         if($hPos) {
             $hPos = strtolower($hPos);
             $hPos_a = array("left", "middle", "right");
-            if(in_array($hPos, $hPos_a))
+            if(in_array($hPos, $hPos_a)) {
                 $this->waterMarkPosition[1] = $hPos;
-            else
+            }
+            else {
                 throw new Exception("IMAGE ERROR: Watermark position needs to be ".implode(" or ", $hPos_a));
+            }
         }
     }
 
@@ -165,8 +171,9 @@ class Image {
      */
     public function createThumb($newName, $maxX, $maxY, $watermark = false ) {
         $res = $this->resize($maxX, $maxY);
-        if($watermark)
+        if($watermark) {
             $res = $this->addWatermark($res);
+        }
         return imagepng($res, $newName);
     }
 
@@ -239,7 +246,7 @@ class Image {
         $w_res = $Watermark->getImageResource();
         $w_x = imagesx($w_res);
         $w_y = imagesy($w_res);
-        if($w_x > $x || $w_y > $y){
+        if($w_x > $x || $w_y > $y) {
             $w_res = $Watermark->resize($x, $y);
             $w_x = imagesx($w_res);
             $w_y = imagesy($w_res);

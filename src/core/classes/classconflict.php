@@ -58,8 +58,9 @@ class ClassConflict {
      */
     public function checkFile($path) {
         $classes = $this->getClassesInFile($path);
-        foreach ($classes['classes'] as $class)
+        foreach ($classes['classes'] as $class) {
             $this->checkClassName($class, $path);
+        }
 
         return true;
     }
@@ -73,8 +74,9 @@ class ClassConflict {
         $lowerName = strtolower($class);
         if(array_search($lowerName, $this->classNames)) {
             $file = $this->classNamesFiles[$lowerName];
-            if(strtolower(basename($org_file)) != strtolower(basename($file)))
+            if(strtolower(basename($org_file)) != strtolower(basename($file))) {
                 throw new WebspellException("ClassConflict Error: Class name ".$class." already used by ".$file, 1);
+            }
         }
         return true;
     }
@@ -86,8 +88,9 @@ class ClassConflict {
      */
     public function checkString($content, $file = null) {
         preg_match_all("/(class ([a-z0-9]*)[a-z0-9 ]{0,}{)/si", $content, $classes, PREG_SET_ORDER);
-        foreach ($classes as $class)
+        foreach ($classes as $class) {
             $this->checkClassName($class[2], $file);
+        }
 
         return true;
     }

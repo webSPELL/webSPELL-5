@@ -22,13 +22,16 @@ class Render {
     
     static function addOutput($key, $output, $append=false) {
         if(array_key_exists($key, self::$outputs)) {
-            if($append == false)
+            if($append == false) {
                 throw new WebspellException('Output key exists');
+            }
             else {
-                if(is_array(self::$outputs[$key]))
+                if(is_array(self::$outputs[$key])) {
                     self::$outputs[$key] = array_merge(self::$outputs[$key], $output);
-                else
+                }
+                else {
                     self::$outputs[$key] .= $output;
+                }
             }
         }
         else {
@@ -42,7 +45,7 @@ class Render {
         $this->themepath  = WEBSPELL_ROOT.DIRECTORY_SEPARATOR;
         $this->themepath .= $this->theme_dir.DIRECTORY_SEPARATOR;
         $this->themepath .= $this->theme;
-        if(is_dir($this->themepath) == false){
+        if(is_dir($this->themepath) == false) {
             throw new WebspellException('Unknown_theme');
         }
     }
@@ -57,13 +60,15 @@ class Render {
         self::$outputs['core']['pagetitle'] = "SEO Page Title"; // @Todo 
         self::$outputs['core']['scripts'] = '';
         array_unique(self::$scripts);
-        foreach(self::$scripts as $script)
+        foreach(self::$scripts as $script) {
             self::$outputs['core']['scripts'] .= '<script src="'.$script[0].'" type="text/javascript"></script>';
+        }
         
         self::$outputs['core']['styles'] = '';
         array_unique(self::$styles);
-        foreach(self::$styles as $style)
+        foreach(self::$styles as $style) {
         	self::$outputs['core']['styles'] .= '<link rel="stylesheet" type="text/css" href="'.$style.'" />';
+        }
         
         $theme = self::$outputs;
         include($this->themepath.DIRECTORY_SEPARATOR.'theme.php');
@@ -79,7 +84,7 @@ class Render {
             $section = 'section_'.$url->getSection();
             $this->addToRender('content', array($module, $section));           
         }  
-        else{
+        else {
             throw new WebspellException('Unknown_module');
         }    
         
