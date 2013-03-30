@@ -1,5 +1,5 @@
 <?php
-class userPropertiesMapper extends \Spot\Entity {
+class UserPropertiesMapper extends \Spot\Entity {
      
     protected static $_datasource = "userProperties";
 
@@ -13,5 +13,4 @@ class userPropertiesMapper extends \Spot\Entity {
         );
     }
 }
-
 ?>

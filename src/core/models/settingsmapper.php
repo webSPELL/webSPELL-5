@@ -1,7 +1,6 @@
 <?php
+class SettingsMapper extends \Spot\Entity {
 
-class settingsMapper extends \Spot\Entity
-{
     protected static $_datasource = 'settings';
     
     public static function fields() {
@@ -12,5 +11,4 @@ class settingsMapper extends \Spot\Entity
         );
     }
 }
-
 ?>

@@ -1,7 +1,6 @@
 <?php
+class LogMapper extends \Spot\Entity {
 
-class logMapper extends \Spot\Entity
-{
     protected static $_datasource = 'log';
     
     public static function fields() {
@@ -14,5 +13,4 @@ class logMapper extends \Spot\Entity
         );
     }
 }
-
 ?>

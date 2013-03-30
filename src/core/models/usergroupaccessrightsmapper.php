@@ -1,6 +1,6 @@
 <?php
-class userGroupAccessRightsMapper extends \Spot\Entity
-{
+class userGroupAccessRightsMapper extends \Spot\Entity {
+
     protected static $_datasource = 'userGroupAccessRights';
 
     public static function fields() {
@@ -21,5 +21,4 @@ class userGroupAccessRightsMapper extends \Spot\Entity
         );
     }
 }
-
 ?>

@@ -1,8 +1,7 @@
-<?php 
-
+<?php
 error_reporting(E_ALL);
 $GLOBALS['starttime'] = microtime(true);
-define("WEBSPELL_ROOT",__DIR__.DIRECTORY_SEPARATOR);
+define("WEBSPELL_ROOT", __DIR__.DIRECTORY_SEPARATOR);
 
 //TODO: find way to integrate libs
 foreach (glob("./core/lib/Spot/*.php") as $filename)
