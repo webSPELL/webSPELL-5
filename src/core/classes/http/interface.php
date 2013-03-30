@@ -45,7 +45,7 @@ class HttpRequest_Options{
      */
     public $headers = array();
 }
-class HttpRequest_Interface{
+abstract class HttpRequest_Interface{
     /**
      * The Options of the connection
      * @var HttpRequest_Options
