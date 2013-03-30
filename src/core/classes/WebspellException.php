@@ -23,7 +23,7 @@ class WebspellException extends Exception {
 	
 	public function __toString() {
 		
-		$debugLevel = $this->registry->get('debugLevel');
+		$debugLevel = DEBUG;
 		$pathToLogFile = $this->registry->get('pathToLogFile');
 
 		$logString = "WebspellException:\nMessage: ".$this->getMessage().
