@@ -1,5 +1,5 @@
 <?php
-class HttpRequestCURL extends HttpRequest_Interface {
+class HttpRequestCURL extends HttpRequestInterface {
     /**
      * @see HttpRequest_Core::init();
      */
@@ -21,7 +21,7 @@ class HttpRequestCURL extends HttpRequest_Interface {
         curl_setopt($this->connection, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($this->connection, CURLOPT_URL, $this->options->protocol."://".$this->options->host.":".$this->options->port."/".$this->options->path);
         curl_setopt($this->connection, CURLOPT_USERAGENT, $this->options->useragent);
-        curl_setopt($this->connection, CURLOPT_FOLLOWLOCATION ,1);
+        curl_setopt($this->connection, CURLOPT_FOLLOWLOCATION, 1);
         if(!empty($this->headers)) {
             curl_setopt($this->connection, CURLOPT_HTTPHEADER, $this->options->headers);
         }
@@ -32,7 +32,7 @@ class HttpRequestCURL extends HttpRequest_Interface {
      */
     public function get() {
         $this->prepareConnection();
-        curl_setopt($this->connection,CURLOPT_POST, 0);
+        curl_setopt($this->connection, CURLOPT_POST, 0);
         $return = curl_exec($this->connection);
         curl_close($this->connection);
         return $return;

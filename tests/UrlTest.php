@@ -58,7 +58,7 @@ class UrlTest extends PHPUnit_Framework_TestCase {
     public function testEmptyUrlClass() {
 
         $c = new Url();
-        $this->assertEquals('news', $c->getModule());
+        $this->assertEquals('News', $c->getModule());
 
     }
 

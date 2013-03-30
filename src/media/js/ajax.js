@@ -21,7 +21,9 @@ Ajax.prototype.request = function()
 	this.requestMethod = this.requestMethod.toUpperCase();
 	
 	var xmlHttpRequest;
-	if (window.XMLHttpRequest) xmlHttpRequest = XMLHttpRequest();
+	if (window.XMLHttpRequest) {
+        xmlHttpRequest = XMLHttpRequest();
+    }
 	else if(window.ActiveXObject) {
 		try { xmlHttpRequest = ActiveXObject("Msxml2.XMLHTTP");}
 		catch(e) {
@@ -34,13 +36,19 @@ Ajax.prototype.request = function()
 		var _this = this;
 		
 		function handler()	{
-			if (xmlHttpRequest.readyState < 4) return false;
+			if (xmlHttpRequest.readyState < 4) {
+                return false;
+            }
 			
 			if (xmlHttpRequest.status == 200 || xmlHttpRequest.status == 304) {
-				if (_this.onRequestSuccess)	_this.onRequestSuccess(xmlHttpRequest.responseText, xmlHttpRequest.responseXML);
+				if (_this.onRequestSuccess) {
+                    _this.onRequestSuccess(xmlHttpRequest.responseText, xmlHttpRequest.responseXML);
+                }
 			} 
 			else {
-				if (_this.onRequestError) _this.onRequestError(xmlHttpRequest.status + " " + xmlHttpRequest.statusText + ": Error while transfering data.");
+				if (_this.onRequestError) {
+                    _this.onRequestError(xmlHttpRequest.status + " " + xmlHttpRequest.statusText + ": Error while transfering data.");
+                }
 			}
 		}
 		

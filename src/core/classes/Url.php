@@ -6,7 +6,7 @@ class Url extends Pattern_Singleton {
 
 	private $registry;
 	private $modRewrite = false;
-	private $defaultModule = "news";
+	private $defaultModule = "News";
 	private $defaultSection = "default";
 
 	private $module;

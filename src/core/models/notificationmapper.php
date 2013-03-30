@@ -1,7 +1,6 @@
 <?php
+class NotificationMapper extends \Spot\Entity {
 
-class notificationMapper extends \Spot\Entity
-{
     protected static $_datasource = 'notifications';
     
     public static function fields() {
@@ -15,5 +14,4 @@ class notificationMapper extends \Spot\Entity
         );
     }
 }
-
 ?>

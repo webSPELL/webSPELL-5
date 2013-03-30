@@ -1,5 +1,5 @@
 <?php
-class HttpRequest_FOPEN extends HttpRequest_Interface {
+class HttpRequestFOPEN extends HttpRequestInterface {
     /**
      * @see HttpRequest_Core::init();
      */
