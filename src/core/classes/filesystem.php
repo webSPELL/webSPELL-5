@@ -12,11 +12,11 @@ class FileSystem {
      * @param integer $bytes
      * @param integer $round[optional]
      */
-    public static function formatFileSize($bytes, $round = 2){
+    public static function formatFileSize($bytes, $round = 2) {
         $pow = floor(log($bytes)/log(1024));
         $pow = min($pow, count(self::$units)-1);
-        $bytes /= pow(1024,$pow);
-        return round($bytes,$round)." ".self::$units[$pow];
+        $bytes /= pow(1024, $pow);
+        return round($bytes, $round)." ".self::$units[$pow];
     }
 
     /**
@@ -24,19 +24,16 @@ class FileSystem {
      * @return boolean
      * @param string $path Path to the folder
      */
-    public static function removeDirRecursive($path){
+    public static function removeDirRecursive($path) {
         if(trim($path) == "") return false;
-        if(is_dir($path) && !is_link($path)){
+        if(is_dir($path) && !is_link($path)) {
             $path = self::Folder($path);
             $dir = dir($path);
-            while(false !== ($entry = $dir->read())){
-                if($entry == "."
-                        || $entry == ".." ){
+            while(false !== ($entry = $dir->read())) {
+                if($entry == "." || $entry == ".." )
                     continue;
-                }
-                if(!self::removeDirRecursive($path.$entry)){
+                if(!self::removeDirRecursive($path.$entry))
                     return false;
-                }
             }
             $dir->close();
             return @rmdir($path);
@@ -49,11 +46,10 @@ class FileSystem {
      * @return string
      * @param string $path
      */
-    public static function Folder($path){
-        $end = substr($path,-1,1);
-        if($end != "/" && $end != "\\"){
+    public static function Folder($path) {
+        $end = substr($path, -1, 1);
+        if($end != "/" && $end != "\\")
             $path .= "/";
-        }
         return $path;
     }
 
@@ -63,31 +59,26 @@ class FileSystem {
      * @param string $path Path to the folder
      * @param boolean $format Get the result formated
      */
-    public static function getDirectorySize($path, $format = false){
+    public static function getDirectorySize($path, $format = false) {
         if(trim($path) == "") return false;
         $size = 0;
         $path = self::Folder($path);
-        if(is_dir($path)){
+        if(is_dir($path)) {
             $dir = dir($path);
-            while(false !== ($entry = $dir->read())){
-                if($entry == "."
-                        || $entry == ".." ){
+            while(false !== ($entry = $dir->read())) {
+                if($entry == "." || $entry == ".." )
                     continue;
-                }
-                if(is_dir($path.$entry)){
+                if(is_dir($path.$entry))
                     $size += self::getDirectorySize($path.$entry, false);
-                }
-                else{
+                else
                     $size += filesize($path.$entry);
-                }
             }
         }
-        if($format == true){
+
+        if($format == true)
             return self::formatFileSize($size);
-        }
-        else{
+        else
             return $size;
-        }
     }
 
     /**
@@ -96,25 +87,23 @@ class FileSystem {
      * @param array $exclude [optional] Folder/files to be excluded
      * @return array
      */
-    public static function getDirectory($path,$exclude=array()){
+    public static function getDirectory($path, $exclude=array()) {
         if(trim($path) == "")
             return false;
         $path = self::Folder($path);
         $data = array();
-        if(is_dir($path)){
+        if(is_dir($path)) {
             $dir = dir($path);
-            while(false !== ($entry=$dir->read())){
-                if($entry == "."||$entry == ".."){
+            while(false !== ($entry=$dir->read())) {
+                if($entry == "."||$entry == "..")
                     continue;
-                }
-                if(!in_array($entry,$exclude)){
-                    if(is_dir($path.$entry)){
+                if(!in_array($entry, $exclude)) {
+                    if(is_dir($path.$entry)) {
                         $data[] = $path.$entry;
-                        $data = array_merge($data,self::getDirectory($path.$entry,$exclude));
+                        $data = array_merge($data,self::getDirectory($path.$entry, $exclude));
                     }
-                    else{
+                    else
                         $data[] = $path.$entry;
-                    }
                 }
             }
         }
@@ -126,8 +115,8 @@ class FileSystem {
      * @return string
      * @param string $string
      */
-    static function getExtension($string){
-        return substr($string, strrpos($string,".") + 1);
+    static function getExtension($string) {
+        return substr($string, strrpos($string, ".") + 1);
     }
 }
 ?>

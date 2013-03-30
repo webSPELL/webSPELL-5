@@ -118,20 +118,18 @@ class Language {
      * @param string $modulename
      */
     private function loader($modulename) {
+
         $invalide = array('\\', '/', '/\/', ':', '.');
         $modulename = str_replace($invalide, '', $modulename);
-        if($this->languagetype == 'mod') {
+
+        if($this->languagetype == 'mod')
             $this->language_path = $this->language_basepath.$modulename.'/languages/';
-        }
-        elseif($this->languagetype == 'core') {
+        elseif($this->languagetype == 'core')
             $this->language_path = $this->language_basepath.'languages/';
-        }
-        elseif($this->languagetype == 'admin') {
+        elseif($this->languagetype == 'admin')
             $this->language_path = $this->language_basepath.'languages/';
-        }
-        else {
+        else
             throw new WebspellException("Language Error: Invalid language type specified.", 2);
-        }
         	
         if(file_exists($this->language_path.$this->language.'/'.$modulename.'.php'))
             $languagefile = $this->language_path.$this->language.'/'.$modulename.'.php';

@@ -2,7 +2,7 @@
 /**
  * @todo: Watermark support (no watermark, on-the-fly, on-save)
  */
-class Image{
+class Image {
     /**
      * The path to the image
      * @var string
@@ -13,7 +13,7 @@ class Image{
      * Valid file extensions for images
      * @var array
      */
-    private $extensions = array('jpg','png','gif','jpeg');
+    private $extensions = array('jpg', 'png', 'gif', 'jpeg');
 
     /**
      * Holds the response of getimagesize
@@ -37,7 +37,7 @@ class Image{
      * Holds the position of the watermark
      * @var array
      */
-    private $waterMarkPosition = array('bottom','right');
+    private $waterMarkPosition = array('bottom', 'right');
 
     /**
      * Class constructor method
@@ -53,43 +53,36 @@ class Image{
      * @param string $img
      * @return boolean
      */
-    public function setWaterMarkImage($img){
-        if(file_exists($img) || true){
+    public function setWaterMarkImage($img) {
+        if(file_exists($img) || true) {
             $info = getimagesize($img);
-            if($info[2] == IMAGETYPE_PNG ||
-                    $info[2] == IMAGETYPE_GIF){
+            if($info[2] == IMAGETYPE_PNG || $info[2] == IMAGETYPE_GIF) {
                 $this->watermarkImage = $img;
                 return true;
             }
-            else{
+            else
                 throw new Exception("IMAGE ERROR: Watermark needs to be png of gif");
-            }
         }
-        else{
+        else
             throw new Exception("IMAGE ERROR: Watermark image doesn't exist");
-        }
     }
 
     public function setWaterMarkPosition($vPos, $hPos){
-        if($vPos){
+        if($vPos) {
             $vPos = strtolower($vPos);
-            $vPos_a = array("top","middle","bottom");
-            if(in_array($vPos, $vPos_a)){
+            $vPos_a = array("top", "middle", "bottom");
+            if(in_array($vPos, $vPos_a))
                 $this->waterMarkPosition[0] = $vPos;
-            }
-            else{
-                throw new Exception("IMAGE ERROR: Watermark position needs to be ".implode(" or ",$vPos_a));
-            }
+            else
+                throw new Exception("IMAGE ERROR: Watermark position needs to be ".implode(" or ", $vPos_a));
         }
-        if($hPos){
+        if($hPos) {
             $hPos = strtolower($hPos);
-            $hPos_a = array("left","middle","right");
-            if(in_array($hPos, $hPos_a)){
+            $hPos_a = array("left", "middle", "right");
+            if(in_array($hPos, $hPos_a))
                 $this->waterMarkPosition[1] = $hPos;
-            }
-            else{
-                throw new Exception("IMAGE ERROR: Watermark position needs to be ".implode(" or ",$hPos_a));
-            }
+            else
+                throw new Exception("IMAGE ERROR: Watermark position needs to be ".implode(" or ", $hPos_a));
         }
     }
 
@@ -129,9 +122,8 @@ class Image{
      * @return array
      */
     private function imageData(){
-        if($this->imageData == null){
+        if($this->imageData == null)
             $this->imageData = getimagesize($this->image);
-        }
         return $this->imageData;
     }
 
@@ -143,14 +135,14 @@ class Image{
      * @return boolean
      */
     public function validateImage($type = 1){
-        if($type == 1){
+        if($type == 1) {
             $ext = FileSystem::getExtension($this->image);
             return in_array($ext, $this->extensions);
         }
-        else{
+        else {
             $info = $this->imageData();
-            if($info){
-                switch($info[2]){
+            if($info) {
+                switch($info[2]) {
                     case IMAGETYPE_GIF:
                     case IMAGETYPE_JPEG:
                     case IMAGETYPE_PNG:
@@ -159,9 +151,8 @@ class Image{
                         return false;
                 }
             }
-            else{
+            else
                 return false;
-            }
         }
     }
 
@@ -172,12 +163,11 @@ class Image{
      * @param integer $maxY Maximum height of the image
      * @return boolean
      */
-    public function createThumb($newName, $maxX, $maxY, $watermark = false ){
+    public function createThumb($newName, $maxX, $maxY, $watermark = false ) {
         $res = $this->resize($maxX, $maxY);
-        if($watermark){
+        if($watermark)
             $res = $this->addWatermark($res);
-        }
-        return imagepng($res,$newName);
+        return imagepng($res, $newName);
     }
 
     /**
@@ -186,8 +176,8 @@ class Image{
      */
     public function getImageResource(){
         $info = $this->imageData();
-        if($info){
-            switch($info[2]){
+        if($info) {
+            switch($info[2]) {
                 case IMAGETYPE_GIF:
                     $res = imagecreatefromgif($this->image);
                     $new = imagecreatetruecolor(imagesx($res), imagesy($res));
@@ -204,9 +194,8 @@ class Image{
                     throw new Exception("IMAGE ERROR: No supported image Type");
             }
         }
-        else{
+        else
             throw new Exception("IMAGE ERROR: No image");
-        }
     }
 
     /**
@@ -221,12 +210,12 @@ class Image{
         $x = $data[0];
         $y = $data[1];
         if (($maxX/$maxY) < ($x/$y)) {
-            $newX = round($x/($x/$maxX),0);
-            $newY = round($y/($x/$maxX),0);
+            $newX = round($x/($x/$maxX), 0);
+            $newY = round($y/($x/$maxX), 0);
         }
         else {
-            $newX = round($x/($y/$maxY),0);
-            $newY = round($y/($y/$maxY),0);
+            $newX = round($x/($y/$maxY), 0);
+            $newY = round($y/($y/$maxY), 0);
         }
         $newRes = imagecreatetruecolor($newX, $newY);
         /*$background = imagecolorallocatealpha($newRes, 0, 0, 0,127);
@@ -236,15 +225,13 @@ class Image{
         $transparent = imagecolorallocatealpha($newRes, 255, 255, 255, 127);
         imagefilledrectangle($newRes, 0, 0, $newX, $newY, $transparent);
 
-        $function = ($this->copyMode == 1)
-        ? "imagecopyresized"
-        : "imagecopyresampled";
-        $function($newRes,$res,0,0,0,0,$newX,$newY,$x,$y);
+        $function = ($this->copyMode == 1) ? "imagecopyresized" : "imagecopyresampled";
+        $function($newRes, $res, 0, 0, 0, 0, $newX, $newY, $x, $y);
         imagedestroy($res);
         return $newRes;
     }
 
-    public function addWatermark(){
+    public function addWatermark() {
         $res = $this->getImageResource();
         $x = imagesx($res);
         $y = imagesy($res);
@@ -253,14 +240,14 @@ class Image{
         $w_x = imagesx($w_res);
         $w_y = imagesy($w_res);
         if($w_x > $x || $w_y > $y){
-            $w_res = $Watermark->resize($x,$y);
+            $w_res = $Watermark->resize($x, $y);
             $w_x = imagesx($w_res);
             $w_y = imagesy($w_res);
         }
         $d_h = $w_y;
         $d_w = $w_x;
         unset($Watermark);
-        switch($this->waterMarkPosition[0]){
+        switch($this->waterMarkPosition[0]) {
             case 'top':
                 $d_y = 0;
                 break;
@@ -271,7 +258,7 @@ class Image{
                 $d_y = $y - $w_y;
                 break;
         }
-        switch($this->waterMarkPosition[1]){
+        switch($this->waterMarkPosition[1]) {
             case 'left':
                 $d_x = 0;
                 break;
@@ -282,12 +269,10 @@ class Image{
                 $d_x = $x-$w_x;
                 break;
         }
-        $function = ($this->copyMode == 1)
-        ? "imagecopyresized"
-        : "imagecopyresampled";
+        $function = ($this->copyMode == 1) ? "imagecopyresized" : "imagecopyresampled";
         imagealphablending($res, true);
         imagesavealpha($res, true);
-        $function($res,$w_res,$d_x,$d_y,0,0,$d_w,$d_h,$w_x,$w_y);
+        $function($res, $w_res, $d_x, $d_y, 0, 0, $d_w, $d_h, $w_x, $w_y);
         return $res;
     }
 }

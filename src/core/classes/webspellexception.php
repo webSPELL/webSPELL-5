@@ -26,22 +26,27 @@ class WebspellException extends Exception {
 		$debugLevel = $this->registry->get('debugLevel');
 		$pathToLogFile = $this->registry->get('pathToLogFile');
 
-		$logString = "WebspellException:".
-		"\nMessage: ".$this->getMessage().
+		$logString = "WebspellException:\nMessage: ".$this->getMessage().
 		"\nError Code: ".$this->getCode().
 		"\nFile: ".$this->getFile().
 		"\nLine: ".$this->getLine().
 		"\nBacktrace:\n";
 		foreach($this->getTrace() as $trace) {
+
 			if(isset($trace['file']))
                 $logString .= "+ File: ".$trace['file']."\n";
+
 			if(isset($trace['line']))
                 $logString .= "+ Line: ".$trace['line']."\n";
+
 			if(isset($trace['function'], $trace['class']))
-                $logString .= "+ Function: ".$trace['class'].$trace['type'].$trace['function']." (".var_export($trace['args'], TRUE).")\n";
+                $logString .= "+ Function: ".$trace['class'].$trace['type'].$trace['function']." (".$this->varExport($trace['args'], true).")\n";
+
 			else
-                $logString .= "+ Function: ".$trace['function']." (".$this->varExport($trace['args'], TRUE).")\n";
+                $logString .= "+ Function: ".$trace['function']." (".$this->varExport($trace['args'], true).")\n";
+
 			$logString .= "\n\n";
+
 		}
 		
 		// 0 = no details, 1 = only logged, 2 = only on website, 3 = website + logfile
