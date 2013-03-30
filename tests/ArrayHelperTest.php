@@ -18,5 +18,10 @@ class ArrayHelperTest extends PHPUnit_Framework_TestCase
       $array[2]="Value";
       $this->assertEquals(false, ArrayHelper::is_assoc($array));
     }
+
+    public function testEmptyArray(){
+    	$array = array();
+    	$this->assertEquals(true, ArrayHelper::is_assoc($array));
+    }
 }
 ?>
