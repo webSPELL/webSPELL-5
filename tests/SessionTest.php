@@ -17,6 +17,21 @@ class SessionTest extends PHPUnit_Framework_TestCase{
 		$value = $this->session->get("unknownKey");
 		$this->assertEquals(null, $value);
 	}
+	
+	public function testShouldReturnValueWhichIsStoredBefore(){
+		$key = 'foo';
+		$value = 'bar';
+		$this->session->set($key, $value);
+		$this->assertEquals($value, $this->session->get($key));
+	}
+	
+	public function testShouldNotReturnValueWhenSessionIsDestroyed(){
+		$key = 'foo';
+		$value = 'bar';
+		$this->session->set($key, $value);
+		$this->session->destroy();
+		$this->assertEquals(null, $this->session->get($key));
+	}
 }
 
 ?>

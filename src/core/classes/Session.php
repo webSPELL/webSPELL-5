@@ -11,22 +11,23 @@ class Session {
 	}
 	
 	public function setUserId($userId){
-		$_SESSION['userId'] = $userId;
+		$this->set('userId', $userId);
 	}
 	
 	public function getUserId($userID){
-		return $_SESSION['userId'];
+		return $this->get('userId');
 	}
 	
 	public function getUserRights(){
-		if(empty($_SESSION['userRights'])){
+		$userRights = $this->get('userRights');
+		if(empty($userRights)){
 			return array();
 		}
-		return $_SESSION['userRights'];
+		return $userRights;
 	}
 	
 	public function setUserRights($userRights){
-		$_SESSION['userRights'] = $userRights;
+		$this->set('userRights', $userRights);
 	}
 	
 	/**
@@ -59,6 +60,7 @@ class Session {
 	 */
 	public function destroy($id = 0){
 		if(empty($id)){
+			session_unset();
 			session_destroy();
 		}
 		else {
@@ -67,6 +69,7 @@ class Session {
 			//change session to given session
 			session_id($id);
 			//delete session
+			session_unset();
 			session_destroy();
 			//return to own session
 			session_id($tempSession);
