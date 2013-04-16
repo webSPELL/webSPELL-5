@@ -34,10 +34,10 @@ class Template {
 
     private function getTemplatePath($template, $namespace) {
         if($this->type == self::Modul) {
-            $path = $this->template_basepath.'modules'.DIRECTORY_SEPARATOR.$namspace.DIRECTORY_SEPARATOR.'templates'.DIRECTORY_SEPARATOR.$template.'.tpl';
+            $path = $this->template_basepath.'modules'.DIRECTORY_SEPARATOR.$namespace.DIRECTORY_SEPARATOR.'templates'.DIRECTORY_SEPARATOR.$template.'.html';
         }
         elseif($this->type == self::Core) {
-            $path = $this->template_basepath.'core'.DIRECTORY_SEPARATOR.'templates'.DIRECTORY_SEPARATOR.$namespace.DIRECTORY_SEPARATOR.$template.'.tpl';
+            $path = $this->template_basepath.'core'.DIRECTORY_SEPARATOR.'templates'.DIRECTORY_SEPARATOR.$namespace.DIRECTORY_SEPARATOR.$template.'.html';
         }
         else {
             throw new WebspellException("Unknown Type", 1);
