@@ -1,211 +1,178 @@
 <?php
-/*
-#######################################################
-#                                                     #
-#    Version 5       /                        /   /   #
-#   -----------__---/__---__------__----__---/---/-   #
-#    | /| /  /___) /   ) (_ `   /   ) /___) /   /     #
-#   _|/_|/__(___ _(___/_(__)___/___/_(___ _/___/___   #
-#                Free Content / Management System     #
-#                            /                        #
-#                                                     #
-#   Copyright 2005-2010 by webSPELL e.V.              #
-#                                                     #
-#   visit www.webspell.org to get webSPELL for free   #
-#                                                     #
-#   - License: GNU General Public License version 3   #
-#   - http://www.gnu.org/copyleft/gpl.html            #
-#   - It is NOT allowed to remove this copyright-tag  #
-#                                                     #
-#######################################################
-*/
+class Template {
+    const Modul = 1;
+    const Core = 0;
 
-	class Template {
-		
-		/**
-		 * Holds the registry
-		 * @var array
-		 */
-		private $registry = false;
-		
-		/**
-		 * Holds the general template type (either 'admin', 'mod' or 'core')
-		 * @var string
-		 */
-		private $templatetype = false;
-		
-		/**
-		 * Holds the template base path depending on the template type
-		 * @var string
-		 */
-		private $template_basepath = false;
-		
-		/**
-		 * Holds the relative path and file name of the template
-		 * @var string
-		 */
-		private $template_path = false;
-		
-		/**
-		 * Holds the parsed template file contents in the form:
-		 * [modulename_templatename1]=>
-		 * 		[subtemplatename1]=>subtemplatecontent1
-		 * 		[subtemplatename2]=>subtemplatecontent2
-		 * 		...
-		 * [modulename_templatename2]=>
-		 * 		[subtemplatename1]=>subtemplatecontent1
-		 * 		[subtemplatename2]=>subtemplatecontent2
-		 * 		...
-		 * ...
-		 * @var array
-		 */
-		private $templates = array();
-		
-		/**
-		 * Class constructor method
-		 * @return boolean
-		 * @param string $templatetype[optional] Selects either mod or core template type
-		 */				
-		function __construct($templatetype='mod') {
-			$this->registry = Registry::getInstance();
-			$this->templatetype = $templatetype;
-			$this->init();
-		}
-		
-		/**
-		 * Sets the basepath for the templates
-		 * @return 
-		 */
-		private function init() {
-			if($this->templatetype == 'mod') {
-				$this->template_basepath = './modules/';
-			}
-			elseif($this->templatetype == 'core') {
-				$this->template_basepath = './core/';
-			}
-			elseif($this->templatetype == 'admin') {
-				$this->template_basepath = './';
-			}
-			else {
-				throw new WebspellException("Template Error: Invalid template type specified.", 2);
-			}
-		}
-		
-		/**
-		 * Loads and splits up a template file
-		 * @return boolean
-		 * @param string $modulename
-		 * @param string $templatename
-		 */
-		private function loadTemplate($modulename, $templatename) {
-			if($this->templatetype == 'mod') {
-				$this->template_path = $this->template_basepath.$modulename.'/templates/'.$templatename.'.html';
-			}
-			elseif($this->templatetype == 'core') {
-				$this->template_path = $this->template_basepath.'templates/'.$modulename.'/'.$templatename.'.html';
-			}
-			elseif($this->templatetype == 'admin') {
-				$this->template_path = $this->template_basepath.'templates/'.$modulename.'/'.$templatename.'.html';
-			}
-			else {
-				throw new WebspellException("Template Error: Invalid template type specified.", 3);
-			}
-			if($template = @file_get_contents($this->template_path)) {
-				$this->templates[$modulename.'_'.$templatename] = array(); 
-				$pattern = '/{§[a-zA-Z0-9]+?§}/i';
-				$content = preg_split($pattern, $template);
-				preg_match_all($pattern, $template, $keys);
-				$count = count($keys[0]);
-				for($i=0; $i<$count; $i++) {
-					$this->templates[$modulename.'_'.$templatename][str_replace(array('{§', '§}'), '', $keys[0][$i])] = $content[$i+1];
-				}
-				return true;
-			}
-			else {
-				throw new WebspellException("Template Error: Requested template file not available.", 4);
-			}
-		}
-		
-		/**
-		 * Parses a subtemplate and fills it based on the given arrays keys and values
-		 * @return array
-		 * @param string $modulename
-		 * @param string $templatename
-		 * @param string $subtemplatename
-		 * @param array $values
-		 */
-		private function parseTemplate($modulename, $templatename, $subtemplatename, $values) {
-			$invalide = array('\\', '/', '/\/', ':', '.');
-			$modulename = str_replace($invalide, '', $modulename);
-			$templatename = str_replace($invalide, '', $templatename);
-			$subtemplatename = str_replace($invalide, '', $subtemplatename);
-			if(!isset($this->templates[$modulename.'_'.$templatename])) $this->loadTemplate($modulename, $templatename);
-			if(isset($this->templates[$modulename.'_'.$templatename][$subtemplatename])) {
-				$search = $replace = array();
-				foreach($values AS $keyword => $value) {
-					$search[] = '{#'.$keyword.'#}';
-					$replace[] = $value;
-				}
-				return str_replace($search, $replace, $this->templates[$modulename.'_'.$templatename][$subtemplatename]);
-			}
-			else {
-				throw new WebspellException("Template Error: Requested subtemplate not available.", 5);
-			}
-		}
-		
-		/**
-		 * Wrapper for single run and return a parsed subtemplate
-		 * @return string
-		 * @param string $modulename
-		 * @param string $templatename
-		 * @param string $subtemplatename
-		 * @param array $values
-		 */
-		public function returnTemplate($modulename, $templatename, $subtemplatename, $values = array()) {
-			return $this->parseTemplate($modulename, $templatename, $subtemplatename, $values);
-		}
-		
-		/**
-		 * Wrapper for single run and echoing a parsed subtemplate
-		 * @return 
-		 * @param string $modulename
-		 * @param string $templatename
-		 * @param string $subtemplatename
-		 * @param array $values
-		 */
-		public function echoTemplate($modulename, $templatename, $subtemplatename, $values = array()) {
-			echo $this->parseTemplate($modulename, $templatename, $subtemplatename, $values);
-		}
-		
-		/**
-		 * Wrapper for multiple runs and return a multiple parsed subtemplate
-		 * @return string
-		 * @param string $modulename
-		 * @param string $templatename
-		 * @param string $subtemplatename
-		 * @param array $values
-		 */
-		public function returnMultiTemplate($modulename, $templatename, $subtemplatename, $values = array()) {
-			$result = '';
-			foreach($values AS $subvalues) {
-				$result .= $this->returnTemplate($modulename, $templatename, $subtemplatename, $subvalues);
-			}
-			return $result;
-		}
-		
-		/**
-		 * Wrapper for multiple runs and echoing a multiple parsed subtemplate
-		 * @return 
-		 * @param string $modulename
-		 * @param string $templatename
-		 * @param string $subtemplatename
-		 * @param array $values
-		 */
-		public function echoMultiTemplate($modulename, $templatename, $subtemplatename, $values = array()) {
-			foreach($values AS $subvalues) {
-				$this->echoTemplate($modulename, $templatename, $subtemplatename, $subvalues);
-			}
-		}
-	}
+    private $regex_block = '/{block;(\w+?)}/i';
+    private $regex_element = '/{(?:lang;){0}([\w]+)}/i';
+    private $regex_split = '/({(?:block;(?:\w+?)|end)})/i';
+    private $regex_language = '/{lang;([\w]+)}/i';
 
+    private $loaded_templates = array();
+
+    private $type = Template::Modul;
+    private $template_basepath = './';
+
+    public function setType($type) {
+        if(in_array($type, array(self::Modul, self::Core))) {
+            $this->type = $type;
+        }
+        else {
+            throw new WebspellException("Unkown Type", 1);
+        }
+    }
+
+    public function setBasePath($path) {
+        if(is_dir($path) && is_readable($path)) {
+            $this->template_basepath = realpath($path.DIRECTORY_SEPARATOR).DIRECTORY_SEPARATOR;
+        }
+        else {
+            throw new WebspellException("Unknown Path", 2);
+        }
+    }
+
+
+    private function getTemplatePath($template, $namespace) {
+        if($this->type == self::Modul) {
+            $path = $this->template_basepath.'modules'.DIRECTORY_SEPARATOR.$namspace.DIRECTORY_SEPARATOR.'templates'.DIRECTORY_SEPARATOR.$template.'.tpl';
+        }
+        elseif($this->type == self::Core) {
+            $path = $this->template_basepath.'core'.DIRECTORY_SEPARATOR.'templates'.DIRECTORY_SEPARATOR.$namespace.DIRECTORY_SEPARATOR.$template.'.tpl';
+        }
+        else {
+            throw new WebspellException("Unknown Type", 1);
+        }
+        return $path;
+    }
+
+    public function loadTemplate($template, $namespace) {
+        if(!in_array($template, $this->loaded_templates)) {
+            $path = $this->getTemplatePath($template, $namespace);
+            if(file_exists($path)) {
+                $this->loaded_templates[$namespace.'_'.$template] = array();
+                $this->loaded_templates[$namespace.'_'.$template]['blocks'] = array();
+                $content = file_get_contents($path);
+                $splits = preg_split($this->regex_split, $content, NULL, PREG_SPLIT_DELIM_CAPTURE | PREG_SPLIT_NO_EMPTY | PREG_SPLIT_NO_EMPTY);
+                $names = array();
+                foreach($splits as $block) {
+                    $block = trim($block);
+                    if(empty($block)) {
+                        continue;
+                    }
+                    if($this->isBlockStart($block)) {
+                        $blockname = $this->getBlockName($block);
+                        array_push($names, $blockname);
+                        $this->loaded_templates[$namespace.'_'.$template]['blocks'][$blockname] = array("content"=>"","blocks"=>array());
+                    }
+                    elseif($this->isBlockEnd($block)) {
+                        array_pop($names);
+                    }
+                    else{
+                        $blockname = $names[count($names)-1];
+                        $this->loaded_templates[$namespace.'_'.$template]['blocks'][$blockname]["content"] .= $block;
+                        if(count($names) != 1) {
+                            $lastblock = $names[count($names)-2];
+                            $this->loaded_templates[$namespace.'_'.$template]['blocks'][$lastblock]["blocks"][] = $blockname;
+                            $this->loaded_templates[$namespace.'_'.$template]['blocks'][$lastblock]["content"] .= "{block;".$blockname."}";
+                        }
+                    }
+                }
+            }
+            else{
+                throw new WebspellException("Template (".$path.") does not exist", 3);
+            }
+        }
+    }
+
+    public function fillTemplate($template, $namespace, $block, $values = array()) {
+        if(!isset($this->loaded_templates[$namespace.'_'.$template])) {
+            $this->loadTemplate($template, $namespace);
+        }
+
+        if(!isset($this->loaded_templates[$namespace.'_'.$template]['blocks'][$block])) {
+            throw new WebspellException("Unknown Block name", 4);
+        }
+
+        if(!is_array($values)) {
+            throw new WebspellException("values needs to be an array", 5);
+        }
+
+        $content = $this->loaded_templates[$namespace.'_'.$template]['blocks'][$block]["content"];
+        $blocks = $this->loaded_templates[$namespace.'_'.$template]['blocks'][$block]["blocks"];
+        preg_match_all($this->regex_element, $content, $results, PREG_SET_ORDER);
+        if(ArrayHelper::isAssoc($values) === false) {
+            $content_filled = '';
+            foreach ($values as $key => $value_array) {
+                $key_function = function($object) {
+                    return $object[0];
+                };
+                $value_function = function($object) use($value_array) {
+                    if(isset($value_array[$object[1]])) {
+                        return $value_array[$object[1]];
+                    }
+                    else {
+                        return '';
+                    }
+                };
+                $org_values = $value_array;
+                $keys = array_map($key_function, $results);
+                $values = array_map($value_function, $results);
+                $pre_parsed = str_replace($keys, $values, $content);
+                $content_filled .=$this->fillSubTemplates($template, $namespace, $block, $org_values, $pre_parsed);
+            }
+        }
+        else{
+            $key_function = function($object) {
+                return $object[0];
+            };
+            $value_function = function($object) use($values) {
+                if(isset($values[$object[1]])) {
+                    return $values[$object[1]];
+                }
+                else {
+                    return '';
+                }
+            };
+            $org_values = $values;
+            $keys = array_map($key_function, $results);
+            $values = array_map($value_function, $results);
+            $pre_parsed = str_replace($keys, $values, $content);
+            $content_filled = $this->fillSubTemplates($template, $namespace, $block, $org_values, $pre_parsed);
+        }
+        return $content_filled;
+    }
+
+    public function translateTemplate($template, $namespace, $block, $values = array()){
+        $content = $this->fillTemplate($template, $namespace, $block, $values);
+    }
+
+    private function getBlockName($tag){
+        preg_match($this->regex_block, $tag, $erg);
+        return $erg[1];
+    }
+
+    private function fillSubTemplates($template, $namespace, $block, $values, $current) {
+        $subblocks = $this->loaded_templates[$namespace.'_'.$template]['blocks'][$block]["blocks"];
+        if(count($subblocks)) {
+            foreach($subblocks as $block_extra) {
+                if(isset($values[$block_extra])) {
+                    $block_content = $this->fillTemplate($template, $namespace, $block_extra, $values[$block_extra]);
+                }
+                else {
+                    $block_content = "";
+                }
+                $current = str_replace("{block;".$block_extra."}", $block_content, $current);
+            }
+        }
+        return $current;
+    }
+
+    private function isBlockStart($tag) {
+        return preg_match($this->regex_block, $tag);
+    }
+
+    private function isBlockEnd($tag) {
+        return $tag == "{end}";
+    }
+}
 ?>
