@@ -103,45 +103,33 @@ class Template {
         if(ArrayHelper::isAssoc($values) === false) {
             $content_filled = '';
             foreach ($values as $key => $value_array) {
-                $key_function = function($object) {
-                    return $object[0];
-                };
-                $value_function = function($object) use($value_array) {
-                    if(isset($value_array[$object[1]])) {
-                        return $value_array[$object[1]];
-                    }
-                    else {
-                        return '';
-                    }
-                };
-                $org_values = $value_array;
-                $keys = array_map($key_function, $results);
-                $values = array_map($value_function, $results);
-                $pre_parsed = str_replace($keys, $values, $content);
-                $content_filled .=$this->fillSubTemplates($template, $namespace, $block, $org_values, $pre_parsed);
+                $content_filled .= $this->fillTemplateElement($template, $namespace, $block, $content, $value_array,$results);
             }
         }
         else{
-            $key_function = function($object) {
-                return $object[0];
-            };
-            $value_function = function($object) use($values) {
-                if(isset($values[$object[1]])) {
-                    return $values[$object[1]];
-                }
-                else {
-                    return '';
-                }
-            };
-            $org_values = $values;
-            $keys = array_map($key_function, $results);
-            $values = array_map($value_function, $results);
-            $pre_parsed = str_replace($keys, $values, $content);
-            $content_filled = $this->fillSubTemplates($template, $namespace, $block, $org_values, $pre_parsed);
+            $content_filled = $this->fillTemplateElement($template, $namespace, $block, $content, $values,$results);
         }
         return $content_filled;
     }
 
+    private function fillTemplateElement($template, $namespace, $blockname, $content, $values,$results){
+        $key_function = function($object) {
+            return $object[0];
+        };
+        $value_function = function($object) use($values) {
+            if(isset($values[$object[1]])) {
+                 return $values[$object[1]];
+            }
+            else {
+                 return '';
+            }
+        };
+        $org_values = $values;
+        $keys = array_map($key_function, $results);
+        $values = array_map($value_function, $results);
+        $pre_parsed = str_replace($keys, $values, $content);
+        return $this->fillSubTemplates($template, $namespace, $blockname, $org_values, $pre_parsed);
+    }
     public function translateTemplate($template, $namespace, $block, $values = array()){
         $content = $this->fillTemplate($template, $namespace, $block, $values);
     }
