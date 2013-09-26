@@ -7,7 +7,7 @@ class UserMapper extends \Spot\Entity {
         return array(
             'userId'        => array('type' => 'int', 'primary' => true, 'serial' => true),
             'email'         => array('type' => 'string', 'required' => true),
-            'password'      => array('type' => 'text', 'required' => true),
+            'password'      => array('type' => 'string', 'required' => true),
             'status'        => array('type' => 'int', 'default' => 0), //-1 = disabled, 0 = not activated, 1 = activated
             'registered'    => array('type' => 'datetime')
         );

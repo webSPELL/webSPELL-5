@@ -141,4 +141,11 @@ interface AdapterInterface
 	 * Will throw errors if user does not have proper permissions
 	 */
 	public function dropDatabase($database);
+    
+    /**
+     * Creates an SQL-Dump of the entire database, taken from the connection
+     * Returns the SQL-Script
+     * Will throw errors if user does not have proper permissions
+     */
+     public function dumpDatabase();
 }

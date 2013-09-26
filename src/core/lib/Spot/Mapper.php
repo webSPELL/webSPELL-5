@@ -762,4 +762,8 @@ class Mapper
             $this->_errors[$field][] = $msg;
         }
     }
+    
+    public function dumpDatabase(){
+        return $this->connection()->dumpDatabase();
+    }
 }

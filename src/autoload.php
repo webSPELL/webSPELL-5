@@ -14,8 +14,8 @@ class Autoload {
 			$modul = str_replace("Module", "", $class);
 			$path = 'modules/'.$modul.'/index.php';
 		}
-		elseif(strstr($class, 'Mapper')){
-			$path = 'core/classes/db/'.$correctedName.'.php';
+		elseif(strlen($class) > 6 && stristr(substr($class, -6), 'Mapper') && !stristr(substr($class, 0, 5), 'Spot\\')){
+			$path = 'core/models/'.$correctedName.'.php';
 		}
 		else{
 			$path = 'core/classes/'.$correctedName.'.php';

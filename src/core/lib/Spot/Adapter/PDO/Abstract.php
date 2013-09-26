@@ -874,4 +874,30 @@ abstract class PDO_Abstract extends AdapterAbstract implements AdapterInterface
         }
         return true;
     }
+    
+    /**
+     * Creates an SQL-Dump of the entire database
+     * Returns the SQL-Script
+     * Will throw errors if user does not have proper permissions
+     */
+     public function dumpDatabase()
+     {
+         $db = $this->connection();
+         $tables = $db->query('SHOW TABLES');
+         $sql = ''; 
+         foreach ($tables as $table) {
+             $sql .= '-- TABLE: ' . $table[0] . PHP_EOL;
+             $create = $db->query('SHOW CREATE TABLE `' . $table[0] . '`')->fetch();
+             $sql .= $create['Create Table'] . ';' . PHP_EOL;
+             
+             $rows = $db->query('SELECT * FROM `' . $table[0] . '`');
+             $rows->setFetchMode(\PDO::FETCH_ASSOC);
+             foreach ($rows as $row) {
+                 $row = array_map(array($db, 'quote'), $row);
+                 $sql .= 'INSERT INTO `' . $table[0] . '` (`' . implode( '`, `', array_keys($row) ) . '`) VALUES (' . implode(', ', $row) . ');' . PHP_EOL;
+             }
+             $sql .= PHP_EOL;
+         }
+         return $sql;
+     }
 }
